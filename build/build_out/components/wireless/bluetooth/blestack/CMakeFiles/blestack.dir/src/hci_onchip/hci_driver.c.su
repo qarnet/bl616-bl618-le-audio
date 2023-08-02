@@ -1,0 +1,5 @@
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/hci_onchip/hci_driver.c:447:12:hci_driver_open	16	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/hci_onchip/hci_driver.c:291:13:recv_thread	16	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/hci_onchip/hci_driver.c:399:12:hci_driver_send	16	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/hci_onchip/hci_driver.c:492:6:hci_driver_enque_recvq	0	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/hci_onchip/hci_driver.c:509:5:hci_driver_init	16	static

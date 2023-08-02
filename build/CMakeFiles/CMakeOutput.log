@@ -1,0 +1,410 @@
+The target system is: Linux - 1 - RISCV
+The host system is: Linux - 5.19.0-50-generic - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /usr/bin/toolchain_gcc_t-head_linux/bin/riscv64-unknown-elf-gcc 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/build/CMakeFiles/3.25.1/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /usr/bin/toolchain_gcc_t-head_linux/bin/riscv64-unknown-elf-g++ 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/build/CMakeFiles/3.25.1/CompilerIdCXX/a.out"
+
+Checking whether the ASM compiler is GNU using "--version" matched "(GNU assembler)|(GCC)|(Free Software Foundation)":
+riscv64-unknown-elf-gcc (Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906) 10.2.0
+Copyright (C) 2020 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/build/CMakeFiles/CMakeScratch/TryCompile-3ROzl1
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_4d55d/fast && gmake[1]: Entering directory '/home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/build/CMakeFiles/CMakeScratch/TryCompile-3ROzl1'
+/usr/bin/gmake  -f CMakeFiles/cmTC_4d55d.dir/build.make CMakeFiles/cmTC_4d55d.dir/build
+gmake[2]: Entering directory '/home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/build/CMakeFiles/CMakeScratch/TryCompile-3ROzl1'
+Building C object CMakeFiles/cmTC_4d55d.dir/CMakeCCompilerABI.c.o
+/usr/bin/toolchain_gcc_t-head_linux/bin/riscv64-unknown-elf-gcc   -v -o CMakeFiles/cmTC_4d55d.dir/CMakeCCompilerABI.c.o -c /home/ubuntuvm/Programs/bouffalo_sdk/tools/cmake/share/cmake-3.25/Modules/CMakeCCompilerABI.c
+Using built-in specs.
+COLLECT_GCC=/usr/bin/toolchain_gcc_t-head_linux/bin/riscv64-unknown-elf-gcc
+Target: riscv64-unknown-elf
+Configured with: /mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/./source/riscv/riscv-gcc/configure --target=riscv64-unknown-elf --with-gmp=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-mpfr=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-mpc=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-libexpat-prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-libmpfr-prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-pkgversion='Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906' CXXFLAGS='-g -O2 -DTHEAD_VERSION_NUMBER=2.6.1 ' --enable-libgcctf --prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1 --disable-shared --enable-threads=posix --enable-languages=c,c++ --with-system-zlib --enable-tls --with-newlib --with-sysroot=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/riscv64-unknown-elf --with-native-system-header-dir=/include --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libgomp --disable-nls --disable-tm-clone-registry --src=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/./source/riscv/riscv-gcc --enable-multilib --with-abi=lp64d --with-arch=rv64gcxthead 'CFLAGS_FOR_TARGET=-Os   -mcmodel=medany' 'CXXFLAGS_FOR_TARGET=-Os   -mcmodel=medany'
+Thread model: posix
+Supported LTO compression algorithms: zlib
+gcc version 10.2.0 (Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906) 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4d55d.dir/CMakeCCompilerABI.c.o' '-c' '-march=rv64gcxthead' '-mabi=lp64d' '-march=rv64imafdc_xtheadc'
+ /usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/cc1 -quiet -v -imultilib rv64imafdc_zfh_xtheadc/lp64d -iprefix /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/ -isysroot /usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf /home/ubuntuvm/Programs/bouffalo_sdk/tools/cmake/share/cmake-3.25/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -march=rv64gcxthead -mabi=lp64d -march=rv64imafdc_xtheadc -auxbase-strip CMakeFiles/cmTC_4d55d.dir/CMakeCCompilerABI.c.o -version -o /tmp/ccOBnYmd.s
+GNU C17 (Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906) version 10.2.0 (riscv64-unknown-elf)
+	compiled by GNU C version 6.4.0, GMP version 6.2.0, MPFR version 4.0.2, MPC version 1.1.0, isl version none
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-elf/10.2.0/include"
+ignoring nonexistent directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/usr/local/include"
+ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-elf/10.2.0/include-fixed"
+ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include"
+ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/include
+ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/include-fixed
+ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include
+End of search list.
+GNU C17 (Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906) version 10.2.0 (riscv64-unknown-elf)
+	compiled by GNU C version 6.4.0, GMP version 6.2.0, MPFR version 4.0.2, MPC version 1.1.0, isl version none
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: d4902f1ec543c8b1ce8bb3832d5a3c2b
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4d55d.dir/CMakeCCompilerABI.c.o' '-c' '-march=rv64gcxthead' '-mabi=lp64d' '-march=rv64imafdc_xtheadc'
+ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/bin/as -v --traditional-format -march=rv64gcxthead -march=rv64imafdc_xtheadc -mabi=lp64d -o CMakeFiles/cmTC_4d55d.dir/CMakeCCompilerABI.c.o /tmp/ccOBnYmd.s
+GNU assembler version 2.35 (riscv64-unknown-elf) using BFD version (GNU Binutils) 2.35
+COMPILER_PATH=/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/:/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/bin/
+LIBRARY_PATH=/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/:/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4d55d.dir/CMakeCCompilerABI.c.o' '-c' '-march=rv64gcxthead' '-mabi=lp64d' '-march=rv64imafdc_xtheadc'
+Linking C executable cmTC_4d55d
+/home/ubuntuvm/Programs/bouffalo_sdk/tools/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4d55d.dir/link.txt --verbose=1
+/usr/bin/toolchain_gcc_t-head_linux/bin/riscv64-unknown-elf-gcc  -v CMakeFiles/cmTC_4d55d.dir/CMakeCCompilerABI.c.o -o cmTC_4d55d 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/toolchain_gcc_t-head_linux/bin/riscv64-unknown-elf-gcc
+COLLECT_LTO_WRAPPER=/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/lto-wrapper
+Target: riscv64-unknown-elf
+Configured with: /mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/./source/riscv/riscv-gcc/configure --target=riscv64-unknown-elf --with-gmp=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-mpfr=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-mpc=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-libexpat-prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-libmpfr-prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-pkgversion='Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906' CXXFLAGS='-g -O2 -DTHEAD_VERSION_NUMBER=2.6.1 ' --enable-libgcctf --prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1 --disable-shared --enable-threads=posix --enable-languages=c,c++ --with-system-zlib --enable-tls --with-newlib --with-sysroot=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/riscv64-unknown-elf --with-native-system-header-dir=/include --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libgomp --disable-nls --disable-tm-clone-registry --src=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/./source/riscv/riscv-gcc --enable-multilib --with-abi=lp64d --with-arch=rv64gcxthead 'CFLAGS_FOR_TARGET=-Os   -mcmodel=medany' 'CXXFLAGS_FOR_TARGET=-Os   -mcmodel=medany'
+Thread model: posix
+Supported LTO compression algorithms: zlib
+gcc version 10.2.0 (Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906) 
+COMPILER_PATH=/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/:/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/bin/
+LIBRARY_PATH=/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/:/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_4d55d' '-march=rv64gcxthead' '-mabi=lp64d' '-march=rv64imafdc_xtheadc'
+ /usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/collect2 -plugin /usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/liblto_plugin.so -plugin-opt=/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cc8aLVaf.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgloss -plugin-opt=-pass-through=-lgcc --sysroot=/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf -melf64lriscv -o cmTC_4d55d /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/crt0.o /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtbegin.o -L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d -L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d -L/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d -L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0 -L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc -L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib -L/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib CMakeFiles/cmTC_4d55d.dir/CMakeCCompilerABI.c.o -lgcc --start-group -lc -lgloss --end-group -lgcc /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtend.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_4d55d' '-march=rv64gcxthead' '-mabi=lp64d' '-march=rv64imafdc_xtheadc'
+gmake[2]: Leaving directory '/home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/build/CMakeFiles/CMakeScratch/TryCompile-3ROzl1'
+gmake[1]: Leaving directory '/home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/build/CMakeFiles/CMakeScratch/TryCompile-3ROzl1'
+
+
+
+Parsed C implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/include]
+    add: [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/include-fixed]
+    add: [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include]
+  end of search list found
+  collapse include dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/include] ==> [/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0/include]
+  collapse include dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/include-fixed] ==> [/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0/include-fixed]
+  collapse include dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include] ==> [/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/include]
+  implicit include dirs: [/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0/include;/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0/include-fixed;/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/include]
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(riscv64-unknown-elf-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/build/CMakeFiles/CMakeScratch/TryCompile-3ROzl1]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_4d55d/fast && gmake[1]: Entering directory '/home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/build/CMakeFiles/CMakeScratch/TryCompile-3ROzl1']
+  ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_4d55d.dir/build.make CMakeFiles/cmTC_4d55d.dir/build]
+  ignore line: [gmake[2]: Entering directory '/home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/build/CMakeFiles/CMakeScratch/TryCompile-3ROzl1']
+  ignore line: [Building C object CMakeFiles/cmTC_4d55d.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/toolchain_gcc_t-head_linux/bin/riscv64-unknown-elf-gcc   -v -o CMakeFiles/cmTC_4d55d.dir/CMakeCCompilerABI.c.o -c /home/ubuntuvm/Programs/bouffalo_sdk/tools/cmake/share/cmake-3.25/Modules/CMakeCCompilerABI.c]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/toolchain_gcc_t-head_linux/bin/riscv64-unknown-elf-gcc]
+  ignore line: [Target: riscv64-unknown-elf]
+  ignore line: [Configured with: /mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/./source/riscv/riscv-gcc/configure --target=riscv64-unknown-elf --with-gmp=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-mpfr=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-mpc=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-libexpat-prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-libmpfr-prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-pkgversion='Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906' CXXFLAGS='-g -O2 -DTHEAD_VERSION_NUMBER=2.6.1 ' --enable-libgcctf --prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1 --disable-shared --enable-threads=posix --enable-languages=c c++ --with-system-zlib --enable-tls --with-newlib --with-sysroot=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/riscv64-unknown-elf --with-native-system-header-dir=/include --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libgomp --disable-nls --disable-tm-clone-registry --src=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/./source/riscv/riscv-gcc --enable-multilib --with-abi=lp64d --with-arch=rv64gcxthead 'CFLAGS_FOR_TARGET=-Os   -mcmodel=medany' 'CXXFLAGS_FOR_TARGET=-Os   -mcmodel=medany']
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib]
+  ignore line: [gcc version 10.2.0 (Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4d55d.dir/CMakeCCompilerABI.c.o' '-c' '-march=rv64gcxthead' '-mabi=lp64d' '-march=rv64imafdc_xtheadc']
+  ignore line: [ /usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/cc1 -quiet -v -imultilib rv64imafdc_zfh_xtheadc/lp64d -iprefix /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/ -isysroot /usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf /home/ubuntuvm/Programs/bouffalo_sdk/tools/cmake/share/cmake-3.25/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -march=rv64gcxthead -mabi=lp64d -march=rv64imafdc_xtheadc -auxbase-strip CMakeFiles/cmTC_4d55d.dir/CMakeCCompilerABI.c.o -version -o /tmp/ccOBnYmd.s]
+  ignore line: [GNU C17 (Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906) version 10.2.0 (riscv64-unknown-elf)]
+  ignore line: [	compiled by GNU C version 6.4.0  GMP version 6.2.0  MPFR version 4.0.2  MPC version 1.1.0  isl version none]
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-elf/10.2.0/include"]
+  ignore line: [ignoring nonexistent directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/usr/local/include"]
+  ignore line: [ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-elf/10.2.0/include-fixed"]
+  ignore line: [ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include"]
+  ignore line: [ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/include]
+  ignore line: [ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/include-fixed]
+  ignore line: [ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include]
+  ignore line: [End of search list.]
+  ignore line: [GNU C17 (Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906) version 10.2.0 (riscv64-unknown-elf)]
+  ignore line: [	compiled by GNU C version 6.4.0  GMP version 6.2.0  MPFR version 4.0.2  MPC version 1.1.0  isl version none]
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: d4902f1ec543c8b1ce8bb3832d5a3c2b]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4d55d.dir/CMakeCCompilerABI.c.o' '-c' '-march=rv64gcxthead' '-mabi=lp64d' '-march=rv64imafdc_xtheadc']
+  ignore line: [ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/bin/as -v --traditional-format -march=rv64gcxthead -march=rv64imafdc_xtheadc -mabi=lp64d -o CMakeFiles/cmTC_4d55d.dir/CMakeCCompilerABI.c.o /tmp/ccOBnYmd.s]
+  ignore line: [GNU assembler version 2.35 (riscv64-unknown-elf) using BFD version (GNU Binutils) 2.35]
+  ignore line: [COMPILER_PATH=/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/:/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/bin/]
+  ignore line: [LIBRARY_PATH=/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/:/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_4d55d.dir/CMakeCCompilerABI.c.o' '-c' '-march=rv64gcxthead' '-mabi=lp64d' '-march=rv64imafdc_xtheadc']
+  ignore line: [Linking C executable cmTC_4d55d]
+  ignore line: [/home/ubuntuvm/Programs/bouffalo_sdk/tools/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4d55d.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/toolchain_gcc_t-head_linux/bin/riscv64-unknown-elf-gcc  -v CMakeFiles/cmTC_4d55d.dir/CMakeCCompilerABI.c.o -o cmTC_4d55d ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/toolchain_gcc_t-head_linux/bin/riscv64-unknown-elf-gcc]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/lto-wrapper]
+  ignore line: [Target: riscv64-unknown-elf]
+  ignore line: [Configured with: /mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/./source/riscv/riscv-gcc/configure --target=riscv64-unknown-elf --with-gmp=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-mpfr=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-mpc=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-libexpat-prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-libmpfr-prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-pkgversion='Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906' CXXFLAGS='-g -O2 -DTHEAD_VERSION_NUMBER=2.6.1 ' --enable-libgcctf --prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1 --disable-shared --enable-threads=posix --enable-languages=c c++ --with-system-zlib --enable-tls --with-newlib --with-sysroot=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/riscv64-unknown-elf --with-native-system-header-dir=/include --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libgomp --disable-nls --disable-tm-clone-registry --src=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/./source/riscv/riscv-gcc --enable-multilib --with-abi=lp64d --with-arch=rv64gcxthead 'CFLAGS_FOR_TARGET=-Os   -mcmodel=medany' 'CXXFLAGS_FOR_TARGET=-Os   -mcmodel=medany']
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib]
+  ignore line: [gcc version 10.2.0 (Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906) ]
+  ignore line: [COMPILER_PATH=/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/:/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/bin/]
+  ignore line: [LIBRARY_PATH=/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/:/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_4d55d' '-march=rv64gcxthead' '-mabi=lp64d' '-march=rv64imafdc_xtheadc']
+  link line: [ /usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/collect2 -plugin /usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/liblto_plugin.so -plugin-opt=/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cc8aLVaf.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgloss -plugin-opt=-pass-through=-lgcc --sysroot=/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf -melf64lriscv -o cmTC_4d55d /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/crt0.o /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtbegin.o -L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d -L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d -L/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d -L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0 -L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc -L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib -L/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib CMakeFiles/cmTC_4d55d.dir/CMakeCCompilerABI.c.o -lgcc --start-group -lc -lgloss --end-group -lgcc /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtend.o]
+    arg [/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/cc8aLVaf.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgloss] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [--sysroot=/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf] ==> ignore
+    arg [-melf64lriscv] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_4d55d] ==> ignore
+    arg [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/crt0.o] ==> obj [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/crt0.o]
+    arg [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtbegin.o] ==> obj [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtbegin.o]
+    arg [-L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d] ==> dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d]
+    arg [-L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d] ==> dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d]
+    arg [-L/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d] ==> dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d]
+    arg [-L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0] ==> dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0]
+    arg [-L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc] ==> dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc]
+    arg [-L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib] ==> dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib]
+    arg [-L/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib] ==> dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib]
+    arg [CMakeFiles/cmTC_4d55d.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [--start-group] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgloss] ==> lib [gloss]
+    arg [--end-group] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtend.o] ==> obj [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtend.o]
+  collapse obj [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/crt0.o] ==> [/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/crt0.o]
+  collapse obj [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtbegin.o] ==> [/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtbegin.o]
+  collapse obj [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtend.o] ==> [/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtend.o]
+  collapse library dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d] ==> [/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d]
+  collapse library dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d] ==> [/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d]
+  collapse library dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d] ==> [/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d]
+  collapse library dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0] ==> [/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0]
+  collapse library dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc] ==> [/usr/bin/toolchain_gcc_t-head_linux/lib/gcc]
+  collapse library dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib] ==> [/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/lib]
+  collapse library dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib] ==> [/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/lib]
+  implicit libs: [gcc;c;gloss;gcc]
+  implicit objs: [/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/crt0.o;/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtbegin.o;/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtend.o]
+  implicit dirs: [/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d;/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d;/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0;/usr/bin/toolchain_gcc_t-head_linux/lib/gcc;/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/lib]
+  implicit fwks: []
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/build/CMakeFiles/CMakeScratch/TryCompile-pU3Mdh
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_b3c42/fast && gmake[1]: Entering directory '/home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/build/CMakeFiles/CMakeScratch/TryCompile-pU3Mdh'
+/usr/bin/gmake  -f CMakeFiles/cmTC_b3c42.dir/build.make CMakeFiles/cmTC_b3c42.dir/build
+gmake[2]: Entering directory '/home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/build/CMakeFiles/CMakeScratch/TryCompile-pU3Mdh'
+Building CXX object CMakeFiles/cmTC_b3c42.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/toolchain_gcc_t-head_linux/bin/riscv64-unknown-elf-g++   -v -o CMakeFiles/cmTC_b3c42.dir/CMakeCXXCompilerABI.cpp.o -c /home/ubuntuvm/Programs/bouffalo_sdk/tools/cmake/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp
+Using built-in specs.
+COLLECT_GCC=/usr/bin/toolchain_gcc_t-head_linux/bin/riscv64-unknown-elf-g++
+Target: riscv64-unknown-elf
+Configured with: /mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/./source/riscv/riscv-gcc/configure --target=riscv64-unknown-elf --with-gmp=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-mpfr=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-mpc=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-libexpat-prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-libmpfr-prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-pkgversion='Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906' CXXFLAGS='-g -O2 -DTHEAD_VERSION_NUMBER=2.6.1 ' --enable-libgcctf --prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1 --disable-shared --enable-threads=posix --enable-languages=c,c++ --with-system-zlib --enable-tls --with-newlib --with-sysroot=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/riscv64-unknown-elf --with-native-system-header-dir=/include --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libgomp --disable-nls --disable-tm-clone-registry --src=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/./source/riscv/riscv-gcc --enable-multilib --with-abi=lp64d --with-arch=rv64gcxthead 'CFLAGS_FOR_TARGET=-Os   -mcmodel=medany' 'CXXFLAGS_FOR_TARGET=-Os   -mcmodel=medany'
+Thread model: posix
+Supported LTO compression algorithms: zlib
+gcc version 10.2.0 (Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906) 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b3c42.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-march=rv64gcxthead' '-mabi=lp64d' '-march=rv64imafdc_xtheadc'
+ /usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/cc1plus -quiet -v -imultilib rv64imafdc_zfh_xtheadc/lp64d -iprefix /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/ -isysroot /usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf /home/ubuntuvm/Programs/bouffalo_sdk/tools/cmake/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -march=rv64gcxthead -mabi=lp64d -march=rv64imafdc_xtheadc -auxbase-strip CMakeFiles/cmTC_b3c42.dir/CMakeCXXCompilerABI.cpp.o -version -o /tmp/ccsZxxBk.s
+GNU C++14 (Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906) version 10.2.0 (riscv64-unknown-elf)
+	compiled by GNU C version 6.4.0, GMP version 6.2.0, MPFR version 4.0.2, MPC version 1.1.0, isl version none
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include/c++/10.2.0"
+ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include/c++/10.2.0/riscv64-unknown-elf/rv64imafdc_zfh_xtheadc/lp64d"
+ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include/c++/10.2.0/backward"
+ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-elf/10.2.0/include"
+ignoring nonexistent directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/usr/local/include"
+ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-elf/10.2.0/include-fixed"
+ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include"
+ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include/c++/10.2.0
+ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include/c++/10.2.0/riscv64-unknown-elf/rv64imafdc_zfh_xtheadc/lp64d
+ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include/c++/10.2.0/backward
+ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/include
+ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/include-fixed
+ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include
+End of search list.
+GNU C++14 (Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906) version 10.2.0 (riscv64-unknown-elf)
+	compiled by GNU C version 6.4.0, GMP version 6.2.0, MPFR version 4.0.2, MPC version 1.1.0, isl version none
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: f924dbd000ee9bf599eef29c1965e72d
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b3c42.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-march=rv64gcxthead' '-mabi=lp64d' '-march=rv64imafdc_xtheadc'
+ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/bin/as -v --traditional-format -march=rv64gcxthead -march=rv64imafdc_xtheadc -mabi=lp64d -o CMakeFiles/cmTC_b3c42.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccsZxxBk.s
+GNU assembler version 2.35 (riscv64-unknown-elf) using BFD version (GNU Binutils) 2.35
+COMPILER_PATH=/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/:/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/bin/
+LIBRARY_PATH=/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/:/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b3c42.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-march=rv64gcxthead' '-mabi=lp64d' '-march=rv64imafdc_xtheadc'
+Linking CXX executable cmTC_b3c42
+/home/ubuntuvm/Programs/bouffalo_sdk/tools/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b3c42.dir/link.txt --verbose=1
+/usr/bin/toolchain_gcc_t-head_linux/bin/riscv64-unknown-elf-g++  -v CMakeFiles/cmTC_b3c42.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_b3c42 
+Using built-in specs.
+COLLECT_GCC=/usr/bin/toolchain_gcc_t-head_linux/bin/riscv64-unknown-elf-g++
+COLLECT_LTO_WRAPPER=/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/lto-wrapper
+Target: riscv64-unknown-elf
+Configured with: /mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/./source/riscv/riscv-gcc/configure --target=riscv64-unknown-elf --with-gmp=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-mpfr=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-mpc=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-libexpat-prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-libmpfr-prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-pkgversion='Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906' CXXFLAGS='-g -O2 -DTHEAD_VERSION_NUMBER=2.6.1 ' --enable-libgcctf --prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1 --disable-shared --enable-threads=posix --enable-languages=c,c++ --with-system-zlib --enable-tls --with-newlib --with-sysroot=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/riscv64-unknown-elf --with-native-system-header-dir=/include --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libgomp --disable-nls --disable-tm-clone-registry --src=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/./source/riscv/riscv-gcc --enable-multilib --with-abi=lp64d --with-arch=rv64gcxthead 'CFLAGS_FOR_TARGET=-Os   -mcmodel=medany' 'CXXFLAGS_FOR_TARGET=-Os   -mcmodel=medany'
+Thread model: posix
+Supported LTO compression algorithms: zlib
+gcc version 10.2.0 (Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906) 
+COMPILER_PATH=/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/:/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/bin/
+LIBRARY_PATH=/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/:/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_b3c42' '-march=rv64gcxthead' '-mabi=lp64d' '-march=rv64imafdc_xtheadc'
+ /usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/collect2 -plugin /usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/liblto_plugin.so -plugin-opt=/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccB32lEa.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgloss -plugin-opt=-pass-through=-lgcc --sysroot=/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf -melf64lriscv -o cmTC_b3c42 /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/crt0.o /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtbegin.o -L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d -L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d -L/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d -L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0 -L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc -L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib -L/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib CMakeFiles/cmTC_b3c42.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc --start-group -lc -lgloss --end-group -lgcc /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtend.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_b3c42' '-march=rv64gcxthead' '-mabi=lp64d' '-march=rv64imafdc_xtheadc'
+gmake[2]: Leaving directory '/home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/build/CMakeFiles/CMakeScratch/TryCompile-pU3Mdh'
+gmake[1]: Leaving directory '/home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/build/CMakeFiles/CMakeScratch/TryCompile-pU3Mdh'
+
+
+
+Parsed CXX implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include/c++/10.2.0]
+    add: [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include/c++/10.2.0/riscv64-unknown-elf/rv64imafdc_zfh_xtheadc/lp64d]
+    add: [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include/c++/10.2.0/backward]
+    add: [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/include]
+    add: [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/include-fixed]
+    add: [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include]
+  end of search list found
+  collapse include dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include/c++/10.2.0] ==> [/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/include/c++/10.2.0]
+  collapse include dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include/c++/10.2.0/riscv64-unknown-elf/rv64imafdc_zfh_xtheadc/lp64d] ==> [/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/include/c++/10.2.0/riscv64-unknown-elf/rv64imafdc_zfh_xtheadc/lp64d]
+  collapse include dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include/c++/10.2.0/backward] ==> [/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/include/c++/10.2.0/backward]
+  collapse include dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/include] ==> [/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0/include]
+  collapse include dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/include-fixed] ==> [/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0/include-fixed]
+  collapse include dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include] ==> [/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/include]
+  implicit include dirs: [/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/include/c++/10.2.0;/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/include/c++/10.2.0/riscv64-unknown-elf/rv64imafdc_zfh_xtheadc/lp64d;/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/include/c++/10.2.0/backward;/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0/include;/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0/include-fixed;/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/include]
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(riscv64-unknown-elf-ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/build/CMakeFiles/CMakeScratch/TryCompile-pU3Mdh]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_b3c42/fast && gmake[1]: Entering directory '/home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/build/CMakeFiles/CMakeScratch/TryCompile-pU3Mdh']
+  ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_b3c42.dir/build.make CMakeFiles/cmTC_b3c42.dir/build]
+  ignore line: [gmake[2]: Entering directory '/home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/build/CMakeFiles/CMakeScratch/TryCompile-pU3Mdh']
+  ignore line: [Building CXX object CMakeFiles/cmTC_b3c42.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/toolchain_gcc_t-head_linux/bin/riscv64-unknown-elf-g++   -v -o CMakeFiles/cmTC_b3c42.dir/CMakeCXXCompilerABI.cpp.o -c /home/ubuntuvm/Programs/bouffalo_sdk/tools/cmake/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/toolchain_gcc_t-head_linux/bin/riscv64-unknown-elf-g++]
+  ignore line: [Target: riscv64-unknown-elf]
+  ignore line: [Configured with: /mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/./source/riscv/riscv-gcc/configure --target=riscv64-unknown-elf --with-gmp=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-mpfr=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-mpc=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-libexpat-prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-libmpfr-prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-pkgversion='Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906' CXXFLAGS='-g -O2 -DTHEAD_VERSION_NUMBER=2.6.1 ' --enable-libgcctf --prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1 --disable-shared --enable-threads=posix --enable-languages=c c++ --with-system-zlib --enable-tls --with-newlib --with-sysroot=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/riscv64-unknown-elf --with-native-system-header-dir=/include --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libgomp --disable-nls --disable-tm-clone-registry --src=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/./source/riscv/riscv-gcc --enable-multilib --with-abi=lp64d --with-arch=rv64gcxthead 'CFLAGS_FOR_TARGET=-Os   -mcmodel=medany' 'CXXFLAGS_FOR_TARGET=-Os   -mcmodel=medany']
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib]
+  ignore line: [gcc version 10.2.0 (Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b3c42.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-march=rv64gcxthead' '-mabi=lp64d' '-march=rv64imafdc_xtheadc']
+  ignore line: [ /usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/cc1plus -quiet -v -imultilib rv64imafdc_zfh_xtheadc/lp64d -iprefix /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/ -isysroot /usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf /home/ubuntuvm/Programs/bouffalo_sdk/tools/cmake/share/cmake-3.25/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -march=rv64gcxthead -mabi=lp64d -march=rv64imafdc_xtheadc -auxbase-strip CMakeFiles/cmTC_b3c42.dir/CMakeCXXCompilerABI.cpp.o -version -o /tmp/ccsZxxBk.s]
+  ignore line: [GNU C++14 (Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906) version 10.2.0 (riscv64-unknown-elf)]
+  ignore line: [	compiled by GNU C version 6.4.0  GMP version 6.2.0  MPFR version 4.0.2  MPC version 1.1.0  isl version none]
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include/c++/10.2.0"]
+  ignore line: [ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include/c++/10.2.0/riscv64-unknown-elf/rv64imafdc_zfh_xtheadc/lp64d"]
+  ignore line: [ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include/c++/10.2.0/backward"]
+  ignore line: [ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-elf/10.2.0/include"]
+  ignore line: [ignoring nonexistent directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/usr/local/include"]
+  ignore line: [ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-elf/10.2.0/include-fixed"]
+  ignore line: [ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/../../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include"]
+  ignore line: [ignoring duplicate directory "/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include/c++/10.2.0]
+  ignore line: [ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include/c++/10.2.0/riscv64-unknown-elf/rv64imafdc_zfh_xtheadc/lp64d]
+  ignore line: [ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include/c++/10.2.0/backward]
+  ignore line: [ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/include]
+  ignore line: [ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/include-fixed]
+  ignore line: [ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/include]
+  ignore line: [End of search list.]
+  ignore line: [GNU C++14 (Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906) version 10.2.0 (riscv64-unknown-elf)]
+  ignore line: [	compiled by GNU C version 6.4.0  GMP version 6.2.0  MPFR version 4.0.2  MPC version 1.1.0  isl version none]
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: f924dbd000ee9bf599eef29c1965e72d]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b3c42.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-march=rv64gcxthead' '-mabi=lp64d' '-march=rv64imafdc_xtheadc']
+  ignore line: [ /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/bin/as -v --traditional-format -march=rv64gcxthead -march=rv64imafdc_xtheadc -mabi=lp64d -o CMakeFiles/cmTC_b3c42.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccsZxxBk.s]
+  ignore line: [GNU assembler version 2.35 (riscv64-unknown-elf) using BFD version (GNU Binutils) 2.35]
+  ignore line: [COMPILER_PATH=/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/:/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/bin/]
+  ignore line: [LIBRARY_PATH=/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/:/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_b3c42.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-march=rv64gcxthead' '-mabi=lp64d' '-march=rv64imafdc_xtheadc']
+  ignore line: [Linking CXX executable cmTC_b3c42]
+  ignore line: [/home/ubuntuvm/Programs/bouffalo_sdk/tools/cmake/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b3c42.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/toolchain_gcc_t-head_linux/bin/riscv64-unknown-elf-g++  -v CMakeFiles/cmTC_b3c42.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_b3c42 ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/usr/bin/toolchain_gcc_t-head_linux/bin/riscv64-unknown-elf-g++]
+  ignore line: [COLLECT_LTO_WRAPPER=/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/lto-wrapper]
+  ignore line: [Target: riscv64-unknown-elf]
+  ignore line: [Configured with: /mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/./source/riscv/riscv-gcc/configure --target=riscv64-unknown-elf --with-gmp=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-mpfr=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-mpc=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-libexpat-prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-libmpfr-prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/build-Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/lib-for-gcc-x86_64-linux --with-pkgversion='Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906' CXXFLAGS='-g -O2 -DTHEAD_VERSION_NUMBER=2.6.1 ' --enable-libgcctf --prefix=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1 --disable-shared --enable-threads=posix --enable-languages=c c++ --with-system-zlib --enable-tls --with-newlib --with-sysroot=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/build-gcc-riscv64-unknown-elf/Xuantie-900-gcc-elf-newlib-x86_64-V2.6.1/riscv64-unknown-elf --with-native-system-header-dir=/include --disable-libmudflap --disable-libssp --disable-libquadmath --disable-libgomp --disable-nls --disable-tm-clone-registry --src=/mnt/ssd/jenkins_iotsw/slave/workspace/Toolchain/build-gnu-riscv/./source/riscv/riscv-gcc --enable-multilib --with-abi=lp64d --with-arch=rv64gcxthead 'CFLAGS_FOR_TARGET=-Os   -mcmodel=medany' 'CXXFLAGS_FOR_TARGET=-Os   -mcmodel=medany']
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib]
+  ignore line: [gcc version 10.2.0 (Xuantie-900 elf newlib gcc Toolchain V2.6.1 B-20220906) ]
+  ignore line: [COMPILER_PATH=/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/:/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/bin/]
+  ignore line: [LIBRARY_PATH=/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/:/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/:/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_b3c42' '-march=rv64gcxthead' '-mabi=lp64d' '-march=rv64imafdc_xtheadc']
+  link line: [ /usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/collect2 -plugin /usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/liblto_plugin.so -plugin-opt=/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccB32lEa.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgloss -plugin-opt=-pass-through=-lgcc --sysroot=/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf -melf64lriscv -o cmTC_b3c42 /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/crt0.o /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtbegin.o -L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d -L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d -L/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d -L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0 -L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc -L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib -L/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib CMakeFiles/cmTC_b3c42.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc --start-group -lc -lgloss --end-group -lgcc /usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtend.o]
+    arg [/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/usr/bin/toolchain_gcc_t-head_linux/bin/../libexec/gcc/riscv64-unknown-elf/10.2.0/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccB32lEa.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgloss] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [--sysroot=/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf] ==> ignore
+    arg [-melf64lriscv] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_b3c42] ==> ignore
+    arg [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/crt0.o] ==> obj [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/crt0.o]
+    arg [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtbegin.o] ==> obj [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtbegin.o]
+    arg [-L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d] ==> dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d]
+    arg [-L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d] ==> dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d]
+    arg [-L/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d] ==> dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d]
+    arg [-L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0] ==> dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0]
+    arg [-L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc] ==> dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc]
+    arg [-L/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib] ==> dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib]
+    arg [-L/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib] ==> dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib]
+    arg [CMakeFiles/cmTC_b3c42.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--start-group] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgloss] ==> lib [gloss]
+    arg [--end-group] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtend.o] ==> obj [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtend.o]
+  collapse obj [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/crt0.o] ==> [/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/crt0.o]
+  collapse obj [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtbegin.o] ==> [/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtbegin.o]
+  collapse obj [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtend.o] ==> [/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtend.o]
+  collapse library dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d] ==> [/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d]
+  collapse library dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d] ==> [/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d]
+  collapse library dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d] ==> [/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d]
+  collapse library dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0] ==> [/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0]
+  collapse library dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc] ==> [/usr/bin/toolchain_gcc_t-head_linux/lib/gcc]
+  collapse library dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../lib/gcc/riscv64-unknown-elf/10.2.0/../../../../riscv64-unknown-elf/lib] ==> [/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/lib]
+  collapse library dir [/usr/bin/toolchain_gcc_t-head_linux/bin/../riscv64-unknown-elf/lib] ==> [/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/lib]
+  implicit libs: [stdc++;m;gcc;c;gloss;gcc]
+  implicit objs: [/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d/crt0.o;/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtbegin.o;/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d/crtend.o]
+  implicit dirs: [/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0/rv64imafdc_zfh_xtheadc/lp64d;/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/lib/rv64imafdc_zfh_xtheadc/lp64d;/usr/bin/toolchain_gcc_t-head_linux/lib/gcc/riscv64-unknown-elf/10.2.0;/usr/bin/toolchain_gcc_t-head_linux/lib/gcc;/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/lib]
+  implicit fwks: []
+
+

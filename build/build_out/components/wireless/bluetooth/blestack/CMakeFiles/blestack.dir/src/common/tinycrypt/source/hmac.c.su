@@ -1,0 +1,4 @@
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/hmac.c:52:5:tc_hmac_set_key	320	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/hmac.c:95:5:tc_hmac_init	16	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/hmac.c:109:5:tc_hmac_update	16	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/hmac.c:124:5:tc_hmac_final	16	static

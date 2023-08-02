@@ -1,0 +1,2 @@
+riscv64-unknown-elf-ar qc ../../../lib/libfreertos.a CMakeFiles/freertos.dir/croutine.c.o CMakeFiles/freertos.dir/event_groups.c.o CMakeFiles/freertos.dir/list.c.o CMakeFiles/freertos.dir/queue.c.o CMakeFiles/freertos.dir/tasks.c.o CMakeFiles/freertos.dir/timers.c.o CMakeFiles/freertos.dir/freertos_port.c.o CMakeFiles/freertos.dir/portable/MemMang/heap_3.c.o "CMakeFiles/freertos.dir/portable/GCC/RISC-V/common/port.c.o" "CMakeFiles/freertos.dir/portable/GCC/RISC-V/common/portASM.S.o"
+riscv64-unknown-elf-ranlib ../../../lib/libfreertos.a

@@ -1,0 +1,3 @@
+/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_rtc.c:12:6:bflb_rtc_disable	0	static
+/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_rtc.c:25:6:bflb_rtc_set_time	0	static
+/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_rtc.c:67:10:bflb_rtc_get_time	0	static

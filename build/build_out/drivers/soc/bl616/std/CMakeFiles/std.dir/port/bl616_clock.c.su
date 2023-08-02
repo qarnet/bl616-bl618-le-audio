@@ -1,0 +1,2 @@
+/home/ubuntuvm/Programs/bouffalo_sdk/drivers/soc/bl616/std/port/bl616_clock.c:4:10:bflb_clk_get_system_clock	0	static
+/home/ubuntuvm/Programs/bouffalo_sdk/drivers/soc/bl616/std/port/bl616_clock.c:23:10:bflb_clk_get_peripheral_clock	0	static

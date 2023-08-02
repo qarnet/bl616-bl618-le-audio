@@ -1,0 +1,2 @@
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/cbc_mode.c:37:5:tc_cbc_mode_encrypt	48	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/cbc_mode.c:77:5:tc_cbc_mode_decrypt	64	static

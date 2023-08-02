@@ -1,0 +1,7 @@
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/bl_hci_wrapper/bl_hci_wrapper.c:31:23:bl_find_valid_data_msg	32	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/bl_hci_wrapper/bl_hci_wrapper.c:47:5:bl_onchiphci_send_2_controller	48	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/bl_hci_wrapper/bl_hci_wrapper.c:150:6:bl_packet_to_host	32	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/bl_hci_wrapper/bl_hci_wrapper.c:238:6:bl_trigger_queued_msg	32	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/bl_hci_wrapper/bl_hci_wrapper.c:285:13:bl_onchiphci_rx_packet_handler	48	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/bl_hci_wrapper/bl_hci_wrapper.c:343:9:bl_onchiphci_interface_init	16	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/bl_hci_wrapper/bl_hci_wrapper.c:355:6:bl_onchiphci_interface_deinit	16	static

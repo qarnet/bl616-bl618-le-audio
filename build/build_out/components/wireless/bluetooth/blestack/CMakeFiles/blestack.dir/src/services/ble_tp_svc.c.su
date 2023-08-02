@@ -1,0 +1,11 @@
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/services/ble_tp_svc.c:109:13:ble_tp_disconnected	0	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/services/ble_tp_svc.c:170:6:indicate_rsp	0	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/services/ble_tp_svc.c:179:13:ble_tp_ind_ccc_changed	32	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/services/ble_tp_svc.c:125:12:ble_tp_recv_rd	32	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/services/ble_tp_svc.c:140:12:ble_tp_recv_wr	16	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/services/ble_tp_svc.c:70:13:ble_tp_connected	16	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/services/ble_tp_svc.c:52:13:ble_tp_tx_mtu_size	16	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/services/ble_tp_svc.c:210:13:ble_tp_not_ccc_changed	64	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/services/ble_tp_svc.c:194:13:ble_tp_notify_task	320	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/services/ble_tp_svc.c:317:22:get_attr	0	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/services/ble_tp_svc.c:330:6:ble_tp_init	16	static

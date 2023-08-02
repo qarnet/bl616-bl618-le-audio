@@ -1,0 +1,7 @@
+/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/include/stdio.h:221:5:puts	16	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/libc/printf.c:25:5:putstring	16	static
+/usr/bin/toolchain_gcc_t-head_linux/riscv64-unknown-elf/include/stdio.h:200:5:printf	64	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/libc/printf.c:85:6:bflb_hexdump	64	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/libc/printf.c:111:6:bflb_dump	32	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/libc/printf.c:126:6:bflb_regdump	0	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/libc/printf.c:131:6:bflb_uart_set_console	0	static

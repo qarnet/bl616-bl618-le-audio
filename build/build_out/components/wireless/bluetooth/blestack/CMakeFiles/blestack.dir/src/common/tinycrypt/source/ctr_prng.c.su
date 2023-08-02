@@ -1,0 +1,5 @@
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/ctr_prng.c:74:13:tc_ctr_prng_update.part.0	96	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/ctr_prng.c:117:5:tc_ctr_prng_init	96	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/ctr_prng.c:164:5:tc_ctr_prng_reseed	80	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/ctr_prng.c:205:5:tc_ctr_prng_generate	80	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/ctr_prng.c:272:6:tc_ctr_prng_uninstantiate	16	static

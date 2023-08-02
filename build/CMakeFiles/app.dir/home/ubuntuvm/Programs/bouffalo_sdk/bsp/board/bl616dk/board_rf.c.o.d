@@ -1,0 +1,34 @@
+CMakeFiles/app.dir/home/ubuntuvm/Programs/bouffalo_sdk/bsp/board/bl616dk/board_rf.c.o: \
+ /home/ubuntuvm/Programs/bouffalo_sdk/bsp/board/bl616dk/board_rf.c \
+ /home/ubuntuvm/Programs/bouffalo_sdk/bsp/board/bl616dk/board_rf.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/soc/bl616/rf/inc/wl_api.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/soc/bl616/rf/inc/wl_config.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/rfparam/Inc/rfparam_adapter.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/rfparam/Inc/rfparam_rftlv.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/soc/bl616/std/include/bl616_hbn.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/soc/bl616/std/include/hardware/hbn_reg.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/soc/bl616/std/include/hardware/bl616.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/include/arch/risc-v/t-head/Core/Include/csi_core.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/include/arch/risc-v/t-head/Core/Include/core_rv32.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/include/arch/risc-v/t-head/Core/Include/csi_rv32_gcc.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/soc/bl616/std/include/bl616_aon.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/soc/bl616/std/include/hardware/aon_reg.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/soc/bl616/std/include/hardware/glb_reg.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/soc/bl616/std/include/hardware/pds_reg.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/soc/bl616/std/include/bl616_ef_cfg.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/include/bflb_ef_ctrl.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/include/bflb_core.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/include/arch/risc-v/csr.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/include/arch/risc-v/riscv_arch.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/include/compiler/compiler_gcc.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/include/compiler/compiler_ld.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/include/bflb_common.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/include/bflb_mtimer.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/include/bflb_irq.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/include/bflb_l1c.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/soc/bl616/std/include/bl616_common.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/soc/bl616/std/include/hardware/bl616.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/include/bflb_core.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/soc/bl616/std/include/bl616_l1c.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/flash/bflb_sflash.h \
+ /home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/flash/bflb_sf_ctrl.h

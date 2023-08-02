@@ -1,0 +1,12 @@
+/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_common.c:4:31:arch_memcpy	0	static
+/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_common.c:16:35:arch_memcpy4	0	static
+/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_common.c:28:31:arch_memcpy_fast	16	static
+/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_common.c:50:31:arch_memset	0	static
+/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_common.c:62:35:arch_memset4	0	static
+/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_common.c:73:29:arch_memcmp	0	static
+/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_common.c:90:6:bflb_check_cache_addr	0	static
+/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_common.c:100:7:bflb_get_no_cache_addr	0	static
+/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_common.c:200:10:bflb_soft_crc16	0	static
+/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_common.c:265:10:bflb_soft_crc32_table	0	static
+/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_common.c:289:27:bflb_soft_crc32_ex	0	static
+/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_common.c:308:34:bflb_soft_crc32	0	static

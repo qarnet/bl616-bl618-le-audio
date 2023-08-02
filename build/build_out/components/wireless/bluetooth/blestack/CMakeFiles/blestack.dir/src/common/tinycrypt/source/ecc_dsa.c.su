@@ -1,0 +1,4 @@
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/ecc_dsa.c:69:13:bits2int	32	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/ecc_dsa.c:102:5:uECC_sign_with_k	208	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/ecc_dsa.c:164:5:uECC_sign	128	static
+/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/ecc_dsa.c:195:5:uECC_verify	544	static
