@@ -1,7 +1,0 @@
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/utils.c:16:6:reverse_bytearray	0	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/utils.c:23:14:find_msb_set	0	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/utils.c:38:14:find_lsb_set	0	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/utils.c:53:5:char2hex	0	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/utils.c:68:5:hex2char	0	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/utils.c:81:8:bin2hex	0	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/utils.c:101:8:hex2bin	0	static

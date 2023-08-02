@@ -1,3 +1,0 @@
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/ecc_dh.c:74:5:uECC_make_key_with_d	128	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/ecc_dh.c:108:5:uECC_make_key	192	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/ecc_dh.c:150:5:uECC_shared_secret	176	static

@@ -1,4 +1,0 @@
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/host/hci_ecc.c:210:13:ecc_thread	80	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/host/hci_ecc.c:297:5:bt_hci_ecc_send	32	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/host/hci_ecc.c:322:5:default_CSPRNG	16	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/host/hci_ecc.c:327:6:bt_hci_ecc_init	16	static

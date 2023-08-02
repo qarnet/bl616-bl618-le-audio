@@ -1,2 +1,0 @@
-riscv64-unknown-elf-ar qc build_out/lib/libapp.a CMakeFiles/app.dir/home/ubuntuvm/Programs/bouffalo_sdk/bsp/board/bl616dk/board.c.o CMakeFiles/app.dir/home/ubuntuvm/Programs/bouffalo_sdk/bsp/board/bl616dk/fw_header.c.o CMakeFiles/app.dir/home/ubuntuvm/Programs/bouffalo_sdk/bsp/board/bl616dk/board_rf.c.o CMakeFiles/app.dir/ble_audio_svc.c.o CMakeFiles/app.dir/us_pacs.c.o
-riscv64-unknown-elf-ranlib build_out/lib/libapp.a

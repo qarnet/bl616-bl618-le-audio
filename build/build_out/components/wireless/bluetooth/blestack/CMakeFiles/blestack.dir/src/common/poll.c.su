@@ -1,4 +1,0 @@
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/poll.c:161:13:polling_events.constprop	48	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/poll.c:27:6:k_poll_event_init	0	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/poll.c:198:5:k_poll	48	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/poll.c:251:5:k_poll_signal_raise	16	static

@@ -1,4 +1,0 @@
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/hmac_prng.c:78:13:update	48	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/hmac_prng.c:130:5:tc_hmac_prng_init	16	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/hmac_prng.c:154:5:tc_hmac_prng_reseed	16	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/hmac_prng.c:192:5:tc_hmac_prng_generate	48	static

@@ -1,5 +1,0 @@
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/host/uuid.c:31:13:uuid_to_uuid128	16	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/host/uuid.c:60:5:bt_uuid_cmp	64	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/host/uuid.c:79:6:bt_uuid_create	16	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/host/uuid.c:102:6:bt_uuid_to_str	48	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/host/uuid.c:131:13:bt_uuid_str_real	16	static

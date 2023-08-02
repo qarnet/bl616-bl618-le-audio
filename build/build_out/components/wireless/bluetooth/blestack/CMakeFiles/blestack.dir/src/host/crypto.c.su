@@ -1,4 +1,0 @@
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/host/crypto.c:64:5:prng_init	80	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/host/crypto.c:95:5:bt_rand	16	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/host/crypto.c:120:5:bt_encrypt_le	208	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/host/crypto.c:148:5:bt_encrypt_be	192	static

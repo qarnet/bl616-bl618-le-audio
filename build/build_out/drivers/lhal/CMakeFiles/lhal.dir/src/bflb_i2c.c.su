@@ -1,9 +1,0 @@
-/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_i2c.c:318:6:bflb_i2c_init	16	static
-/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_i2c.c:341:6:bflb_i2c_deinit	0	static
-/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_i2c.c:362:6:bflb_i2c_link_txdma	0	static
-/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_i2c.c:377:6:bflb_i2c_link_rxdma	0	static
-/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_i2c.c:392:5:bflb_i2c_transfer	80	static
-/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_i2c.c:451:6:bflb_i2c_int_mask	0	static
-/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_i2c.c:465:6:bflb_i2c_int_clear	0	static
-/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_i2c.c:476:10:bflb_i2c_get_intstatus	0	static
-/home/ubuntuvm/Programs/bouffalo_sdk/drivers/lhal/src/bflb_i2c.c:484:5:bflb_i2c_feature_control	0	static

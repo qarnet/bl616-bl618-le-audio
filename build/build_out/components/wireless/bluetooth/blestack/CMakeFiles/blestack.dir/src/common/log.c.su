@@ -1,3 +1,0 @@
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/log.c:22:13:bt_hex_real	0	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/log.c:45:13:bt_addr_str_real	32	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/log.c:54:13:bt_addr_le_str_real	48	static

@@ -1,4 +1,0 @@
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/sha256.c:181:13:compress	144	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/sha256.c:39:5:tc_sha256_init	16	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/sha256.c:65:5:tc_sha256_update	32	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/sha256.c:87:5:tc_sha256_final	16	static

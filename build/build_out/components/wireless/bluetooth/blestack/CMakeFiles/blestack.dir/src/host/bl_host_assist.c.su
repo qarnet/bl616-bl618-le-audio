@@ -1,4 +1,0 @@
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/host/bl_host_assist.c:36:13:blhast_ble_scan_assist_cb	0	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/host/bl_host_assist.c:75:13:blhast_ble_adv_assist_cb	32	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/host/bl_host_assist.c:365:6:blhast_bt_reset	64	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/host/bl_host_assist.c:371:6:blhast_init	16	static

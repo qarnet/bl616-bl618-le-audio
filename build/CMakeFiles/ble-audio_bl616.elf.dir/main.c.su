@@ -1,4 +1,0 @@
-/home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/main.c:50:13:ble_connected	0	static
-/home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/main.c:58:13:ble_disconnected	16	static
-/home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/main.c:105:6:bt_enable_cb	64	static
-/home/ubuntuvm/Programs/bouffalo_sdk/projects/ble-audio/main.c:123:5:main	32	static

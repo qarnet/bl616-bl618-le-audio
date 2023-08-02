@@ -1,3 +1,0 @@
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/ccm_mode.c:39:5:tc_ccm_config	0	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/ccm_mode.c:137:5:tc_ccm_generation_encryption	112	static
-/home/ubuntuvm/Programs/bouffalo_sdk/components/wireless/bluetooth/blestack/src/common/tinycrypt/source/ccm_mode.c:198:5:tc_ccm_decryption_verification	128	static

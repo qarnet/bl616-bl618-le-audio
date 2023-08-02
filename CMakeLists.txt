@@ -13,4 +13,4 @@ target_sources(app PRIVATE
 
 sdk_set_main_file(main.c)
 
-project(ble-audio)
+project(bl616-le-audio)
