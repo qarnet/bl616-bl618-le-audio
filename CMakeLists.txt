@@ -8,7 +8,7 @@ sdk_add_include_directories(.)
 
 target_sources(app PRIVATE
     ble_audio_svc.c
-    us_pacs.c
+    pacs.c
 )
 
 sdk_set_main_file(main.c)
