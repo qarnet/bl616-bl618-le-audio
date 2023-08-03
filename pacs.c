@@ -213,7 +213,7 @@ static void ble_sink_pac_notify_ccc_changed(const struct bt_gatt_attr *attr, u16
     char data[9] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09};
 
     if(value == BT_GATT_CCC_INDICATE) { // If might not be needed
-        err = bt_gatt_notify(ble_pacs_conn, get_attr(BT_CHAR_BLE_TP_NOT_ATTR_VAL_INDEX), data, (tx_mtu_size - 3));
+        err = bt_gatt_notify(ble_pacs_conn, get_attr(BT_CHRC_SINK_PACK_NOTIFY_ATTR_VAL_INDEX), data, (tx_mtu_size - 3));
         BT_WARN("ble tp send indatcate: %d", err);
     }
 }
@@ -224,7 +224,7 @@ static void ble_sink_audio_locations_notify_ccc_changed(const struct bt_gatt_att
     char data[9] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09};
 
     if(value == BT_GATT_CCC_INDICATE) { // If might not be needed
-        err = bt_gatt_notify(ble_pacs_conn, get_attr(BT_CHAR_BLE_TP_NOT_ATTR_VAL_INDEX), data, (tx_mtu_size - 3));
+        err = bt_gatt_notify(ble_pacs_conn, get_attr(BT_CHRC_SINK_AUDIO_LOCATIONS_NOTIFY_ATTR_VAL_INDEX), data, (tx_mtu_size - 3));
         BT_WARN("ble tp send indatcate: %d", err);
     }
 }
@@ -235,7 +235,7 @@ static void ble_available_audio_contexts_notify_ccc_changed(const struct bt_gatt
     char data[9] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09};
 
     if(value == BT_GATT_CCC_INDICATE) { // If might not be needed
-        err = bt_gatt_notify(ble_pacs_conn, get_attr(BT_CHAR_BLE_TP_NOT_ATTR_VAL_INDEX), data, (tx_mtu_size - 3));
+        err = bt_gatt_notify(ble_pacs_conn, get_attr(BT_CHRC_SINK_AUDIO_LOCATIONS_NOTIFY_ATTR_VAL_INDEX), data, (tx_mtu_size - 3));
         BT_WARN("ble tp send indatcate: %d", err);
     }
 }
@@ -246,7 +246,7 @@ static void ble_supported_audio_contexts_notify_ccc_changed(const struct bt_gatt
     char data[9] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09};
 
     if(value == BT_GATT_CCC_INDICATE) { // If might not be needed
-        err = bt_gatt_notify(ble_pacs_conn, get_attr(BT_CHAR_BLE_TP_NOT_ATTR_VAL_INDEX), data, (tx_mtu_size - 3));
+        err = bt_gatt_notify(ble_pacs_conn, get_attr(BT_CHRC_SUPPORTED_AUDIO_CONTEXTS_NOTIFY_ATTR_VAL_INDEX), data, (tx_mtu_size - 3));
         BT_WARN("ble tp send indatcate: %d", err);
     }
 }

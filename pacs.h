@@ -9,14 +9,15 @@
 #define BT_UUID_CHRC_AVAILABLE_AUDIO_CONTEXTS BT_UUID_DECLARE_16(0x2bcd)
 #define BT_UUID_CHRC_SUPPORTED_AUDIO_CONTEXTS BT_UUID_DECLARE_16(0x2bce)
 
-//read value handle offset 2
-#define BT_CHAR_BLE_TP_RD_ATTR_VAL_INDEX    	(2)
-//write value handle offset 4
-#define BT_CHAR_BLE_TP_WR_ATTR_VAL_INDEX	(4)
+
 //indicate value handle offset 6
-#define BT_CHAR_BLE_TP_IND_ATTR_VAL_INDEX	(6)
+#define BT_CHRC_SINK_PACK_NOTIFY_ATTR_VAL_INDEX	(1)
 //notity value handle offset 9
-#define BT_CHAR_BLE_TP_NOT_ATTR_VAL_INDEX	(9)
+#define BT_CHRC_SINK_AUDIO_LOCATIONS_NOTIFY_ATTR_VAL_INDEX	(2)
+//indicate value handle offset 6
+#define BT_CHRC_AVAILABLE_AUDIO_CONTEXTS_NOTIFY_ATTR_VAL_INDEX	(3)
+//notity value handle offset 9
+#define BT_CHRC_SUPPORTED_AUDIO_CONTEXTS_NOTIFY_ATTR_VAL_INDEX	(4)
 
 int pacs_init();
 
