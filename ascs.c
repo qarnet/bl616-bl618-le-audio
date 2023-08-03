@@ -1,14 +1,3 @@
-/****************************************************************************
-FILE NAME
-    ble_tp_svc.c
-
-DESCRIPTION
-    test profile demo
-
-NOTES
-*/
-/****************************************************************************/
-
 #include <sys/errno.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -22,7 +11,7 @@ NOTES
 #include "gatt.h"
 #include "hci_core.h"
 #include "uuid.h"
-#include "ble_tp_svc.h"
+#include "ascs.h"
 #include "bt_log.h"
 
 // #define TP_PRIO configMAX_PRIORITIES - 5
@@ -322,15 +311,148 @@ NOTES
 
 // struct bt_gatt_service ble_us_pacs_server = BT_GATT_SERVICE(attrs);
 
+typedef enum {
+    ASCS_SM_STATE_IDLE = 0x00,
+    ASCS_SM_STATE_CODEC_CONFIGURED = 0x01,
+    ASCS_SM_STATE_QOS_CONFIGURED = 0x02,
+    ASCS_SM_STATE_ENABLING = 0x03,
+    ASCS_SM_STATE_STREAMING = 0x04,
+    ASCS_SM_STATE_DISABLING = 0x05,
+    ASCS_SM_STATE_RELEASING = 0x06,
+    ASCS_SM_STATE_LAST_ENTRY,
+} ascs_sm_state;
 
-/*************************************************************************
-NAME    
-    ble_tp_init
-*/
-void ble_audio_init()
+typedef enum {
+    ASCS_SM_EVT_CONFIG_CODEC,
+    ASCS_SM_EVT_CONFIG_QOS,
+    ASCS_SM_EVT_RELEASED_CACHING,
+    ASCS_SM_EVT_RELEASED_NO_CACHING,
+    ASCS_SM_EVT_RELEASE,
+    ASCS_SM_EVT_ENABLE,
+    ASCS_SM_EVT_DISABLE,
+    ASCS_SM_EVT_UPDATE_METADATA,
+    ASCS_SM_EVT_RECEIVER_START_READY,
+    ASCS_SM_EVT_LAST_ENTRY,
+} ascs_sm_evt;
+
+typedef ascs_sm_state (*const ascsArrayEventHandler[ASCS_SM_STATE_LAST_ENTRY][ASCS_SM_EVT_LAST_ENTRY])(void *_data);
+
+typedef ascs_sm_state (*ascsEventHandler)(void *_data);
+
+ascs_sm_state idleSConfigCodecEHandler(void *_data)
 {
-    printf("INIT\r\n");
-    
+    return ASCS_SM_STATE_CODEC_CONFIGURED;
+}
+
+ascs_sm_state codecConfiguredSConfigCodecEHandler(void *_data)
+{
+    return ASCS_SM_STATE_CODEC_CONFIGURED;
+}
+
+ascs_sm_state codecConfiguredSReleaseEHandler(void *_data)
+{
+    return ASCS_SM_STATE_RELEASING;
+}
+
+ascs_sm_state codecConfiguredSconfigQoSEHandler(void *_data)
+{
+    return ASCS_SM_STATE_QOS_CONFIGURED;
+}
+
+ascs_sm_state qoSConfiguredSConfigCodecEHandler(void *_data)
+{
+    return ASCS_SM_STATE_CODEC_CONFIGURED;
+}
+
+ascs_sm_state qoSConfiguredSConfigQoSEHandler(void *_data)
+{
+    return ASCS_SM_STATE_QOS_CONFIGURED;
+}
+
+ascs_sm_state qoSConfiguredSReleaseEHandler(void *_data)
+{
+    return ASCS_SM_STATE_RELEASING;
+}
+
+ascs_sm_state qoSConfiguredSEnableEHandler(void *_data)
+{
+    return ASCS_SM_STATE_ENABLING;
+}
+
+ascs_sm_state enablingSReleaseEHandler(void *_data)
+{
+    return ASCS_SM_STATE_RELEASING;
+}
+
+ascs_sm_state enablingSUpdateMetadataEHandler(void *_data)
+{
+    return ASCS_SM_STATE_ENABLING;
+}
+
+ascs_sm_state enablingSDisableEHandler(void *_data)
+{
+    return ASCS_SM_STATE_QOS_CONFIGURED;
+}
+
+ascs_sm_state enablingSReceiverStartReadyEHandler(void *_data)
+{
+    return ASCS_SM_STATE_STREAMING;
+}
+
+ascs_sm_state streamingSUpdateMetadataEHandler(void *_data)
+{
+    return ASCS_SM_STATE_STREAMING;
+}
+
+ascs_sm_state streamingSDisableEHandler(void *_data)
+{
+    return ASCS_SM_STATE_QOS_CONFIGURED;
+}
+
+ascs_sm_state streamingSReleaseEHandler(void *_data)
+{
+    return ASCS_SM_STATE_RELEASING;
+}
+
+ascs_sm_state releasingSReleasedNoCachingEHandler(void *_data)
+{
+    return ASCS_SM_STATE_IDLE;
+}
+
+ascs_sm_state releasingSReleasedCachingEHandler(void *_data)
+{
+    return ASCS_SM_STATE_CODEC_CONFIGURED;
+}
+
+
+
+void ascs_init()
+{
+    printf("ASCS Init\n");
+
+    ascs_sm_state current_state = ASCS_SM_STATE_IDLE;
+    ascs_sm_evt new_event;
+
+    static ascsArrayEventHandler stateMachine = {
+        [ASCS_SM_STATE_IDLE] = {[ASCS_SM_EVT_CONFIG_CODEC] = idleSConfigCodecEHandler},
+        [ASCS_SM_STATE_CODEC_CONFIGURED] = {[ASCS_SM_EVT_CONFIG_CODEC] = codecConfiguredSConfigCodecEHandler},
+        [ASCS_SM_STATE_CODEC_CONFIGURED] = {[ASCS_SM_EVT_RELEASE] = codecConfiguredSReleaseEHandler},
+        [ASCS_SM_STATE_CODEC_CONFIGURED] = {[ASCS_SM_EVT_CONFIG_QOS] = codecConfiguredSconfigQoSEHandler},
+        [ASCS_SM_STATE_QOS_CONFIGURED] = {[ASCS_SM_EVT_CONFIG_CODEC] = qoSConfiguredSConfigCodecEHandler},
+        [ASCS_SM_STATE_QOS_CONFIGURED] = {[ASCS_SM_EVT_CONFIG_QOS] = qoSConfiguredSConfigQoSEHandler},
+        [ASCS_SM_STATE_QOS_CONFIGURED] = {[ASCS_SM_EVT_RELEASE] = qoSConfiguredSReleaseEHandler},
+        [ASCS_SM_STATE_QOS_CONFIGURED] = {[ASCS_SM_EVT_ENABLE] = qoSConfiguredSEnableEHandler},
+        [ASCS_SM_STATE_ENABLING] = {[ASCS_SM_EVT_RELEASE] = enablingSReleaseEHandler},
+        [ASCS_SM_STATE_ENABLING] = {[ASCS_SM_EVT_UPDATE_METADATA] = enablingSUpdateMetadataEHandler},
+        [ASCS_SM_STATE_ENABLING] = {[ASCS_SM_EVT_DISABLE] = enablingSDisableEHandler},
+        [ASCS_SM_STATE_ENABLING] = {[ASCS_SM_EVT_RECEIVER_START_READY] = enablingSReceiverStartReadyEHandler},
+        [ASCS_SM_STATE_STREAMING] = {[ASCS_SM_EVT_UPDATE_METADATA] = streamingSUpdateMetadataEHandler},
+        [ASCS_SM_STATE_STREAMING] = {[ASCS_SM_EVT_DISABLE] = streamingSDisableEHandler},
+        [ASCS_SM_STATE_STREAMING] = {[ASCS_SM_EVT_RELEASE] = streamingSReleaseEHandler},
+        [ASCS_SM_STATE_RELEASING] = {[ASCS_SM_EVT_RELEASED_NO_CACHING] = releasingSReleasedNoCachingEHandler},
+        [ASCS_SM_STATE_RELEASING] = {[ASCS_SM_EVT_RELEASED_CACHING] = releasingSReleasedCachingEHandler},
+    };
+
     return;
 
     // if( !isRegister )

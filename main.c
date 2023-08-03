@@ -20,7 +20,7 @@
 #include "ble_tp_svc.h"
 #include "hci_driver.h"
 #include "hci_core.h"
-#include "ble_audio_svc.h"
+#include "ascs.h"
 #include "pacs.h"
 
 static struct bflb_device_s *uart0;
