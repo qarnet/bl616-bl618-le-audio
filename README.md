@@ -1,30 +1,27 @@
-# Peripheral
+# Setup
+## 1.
+Follow the environment setup from https://github.com/bouffalolab/bouffalo_sdk.git
 
-This sample description ble peripheral function with READ, WRITE/WRITE NO RESPONSE, INDICATE and NOTIFY properties. Can be linked and communicated by ble app.
+## 2.
+```
+git clone https://github.com/bouffalolab/bouffalo_sdk.git
+cd bouffalo_sdk
+edit project.build and change COM to com path (e.g. /dev/ttyUSB0)
+mkdir projects
+cd projects
+git clone git@github.com:qarnet/bl616-le-audio.git
+```
 
-## Support CHIP
+# Supported CHIP
+BL616/BL618
 
-|      CHIP        | Remark |
-|:----------------:|:------:|
-|BL616/BL618       |        |
-|BL808             |  Only for M0 CPU      |
-
-## Compile
-
-- BL616/BL618
-
+# Compile
 ```
 make CHIP=bl616 BOARD=bl616dk
 ```
 
-- BL808
-
-```
-make CHIP=bl808 BOARD=bl808dk CPU_ID=m0
-```
-
-## Flash
-
+# Flash
 ```
 make flash CHIP=chip_name COMX=xxx # xxx is your com name
 ```
+Hold boot button, then press reset and finally let go of boot button
