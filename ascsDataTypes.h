@@ -45,6 +45,7 @@ typedef struct {
         .additional_ase_params = additional_ase_params_buffer};
 
 typedef struct {
+    uint8_t framing;
     uint8_t preferred_phy;
     uint8_t preferred_retransmission_number;
     uint8_t max_transport_lateny[2];
@@ -80,6 +81,8 @@ typedef struct {
 
 
 typedef struct {
+    uint8_t cig_id;
+    uint8_t cis_id;
     uint8_t metadata_length;
     uint8_t *metadata;
 } sink_ase_csc_enabling_streaming_disabling; 

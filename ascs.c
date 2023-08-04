@@ -99,76 +99,202 @@ static void ble_ascs_disconnected(struct bt_conn *conn, u8_t reason)
     ble_ascs_conn = NULL;
 }
 
+#define ADD_U8_TO_BUF(_buf, _val, _length_counter)  \
+    _buf[_length_counter] = _val;   \
+    _length_counter++;
+#define ADD_ARR_TO_BUF(_buf, _arr, _length_counter) \
+    memcpy(&_buf[_length_counter], _arr, sizeof(_arr));   \
+    _length_counter += sizeof(_arr);
+#define ADD_VARIED_U8_TO_BUF(_buf, _struct, _len)   \
+    ADD_U8_TO_BUF(_buf, _struct.length, _len);    \
+    ADD_U8_TO_BUF(_buf, _struct.type, _len);   \
+    ADD_U8_TO_BUF(_buf, _struct.value, _len);
+#define ADD_VARIED_ARR_TO_BUF(_buf, _struct, _len) \
+    ADD_U8_TO_BUF(_buf, _struct.length, _len);    \
+    ADD_U8_TO_BUF(_buf, _struct.type, _len);   \
+    ADD_ARR_TO_BUF(_buf, _struct.value, _len);
+#define ADD_VARIED_POINTER_TO_BUF(_buf, _struct, _len)  \
+    ADD_U8_TO_BUF(buf, meta_pi.length, len);    \
+    ADD_U8_TO_BUF(buf, meta_pi.type, len);  \
+    memcpy(&buf[_len], _struct.value, _struct.length); \
+    _len += _struct.length;
+
 static int ble_sink_ase_recv_rd(struct bt_conn *_conn,	const struct bt_gatt_attr *_attr,
                                         void *_buf, u16_t _len, u16_t _offset)
 {
-    
+    int len = 0;
+
     if((current_state == ASCS_SM_STATE_IDLE) || (current_state == ASCS_SM_STATE_RELEASING))
     {
         uint8_t buf[2];
-        buf[0] = sink_ase_val.ase_id;
-        buf[1] = sink_ase_val.ase_state;
-        _len = sizeof(buf);
-        memcpy(_buf, buf, _len);
+        ADD_U8_TO_BUF(buf, sink_ase_val.ase_id, len);
+        ADD_U8_TO_BUF(buf, sink_ase_val.ase_state, len);
+        memcpy(_buf, buf, len);
+
+        goto end;
     }
     else if(current_state == ASCS_SM_STATE_CODEC_CONFIGURED)
     {
         uint8_t buf[256];
-        buf[0] = sink_ase_val.ase_id;
-        buf[1] = sink_ase_val.ase_state;
 
-        codec_specific_configuration_empty csc_type_finder;
-        sink_ase_csc_codec_configured additional_data = {
-            .codec_specific_configuration = &csc_type_finder,
-        };
-        memcpy(&additional_data, &sink_ase_val.additional_ase_params, sizeof(additional_data) - 1);
-        memcpy(&buf[2], &sink_ase_val.additional_ase_params, sizeof(additional_data) - 1);
+        ADD_U8_TO_BUF(buf, sink_ase_val.ase_id, len);
+        ADD_U8_TO_BUF(buf, sink_ase_val.ase_state, len);
+
+        sink_ase_csc_codec_configured additional_data;
+        memcpy(&additional_data, sink_ase_val.additional_ase_params, (sizeof(additional_data)));
+
+        ADD_U8_TO_BUF(buf, additional_data.framing, len);
+        ADD_U8_TO_BUF(buf, additional_data.preferred_phy, len);
+        ADD_U8_TO_BUF(buf, additional_data.preferred_retransmission_number, len);
+        ADD_ARR_TO_BUF(buf, additional_data.max_transport_lateny, len);
+        ADD_ARR_TO_BUF(buf, additional_data.presentation_delay_min, len);
+        ADD_ARR_TO_BUF(buf, additional_data.presentation_delay_max, len);
+        ADD_ARR_TO_BUF(buf, additional_data.preferred_presentation_delay_min, len);
+        ADD_ARR_TO_BUF(buf, additional_data.preferred_presentation_delay_max, len);
+        ADD_ARR_TO_BUF(buf, additional_data.codec_id, len);
+        ADD_U8_TO_BUF(buf, additional_data.codec_specific_configuration_length, len);
 
         if(additional_data.codec_specific_configuration_length == 0x00)
         {
             goto end;
         }
 
-        memcpy(&additional_data, &sink_ase_val.additional_ase_params, (sizeof(additional_data) - 1) + sizeof(csc_type_finder));
+        codec_specific_configuration_empty csc_type_finder;
+        memcpy(&csc_type_finder, additional_data.codec_specific_configuration, sizeof(csc_type_finder));
+
         switch(csc_type_finder.type)
         {
             case CSC_TYPE_SAMPLING_FREQUENCY: ;
-                codec_specific_configuration_sampling_frequency csc_a;
-                additional_data.codec_specific_configuration = &csc_a;
-                memcpy(&additional_data, &sink_ase_val.additional_ase_params, (sizeof(additional_data) - 1) + sizeof(csc_a));
+                codec_specific_configuration_sampling_frequency csc_sf;
+                memcpy(&csc_sf, additional_data.codec_specific_configuration, sizeof(csc_sf));
+                ADD_VARIED_U8_TO_BUF(buf, csc_sf, len);
                 break;
             case CSC_TYPE_FRAME_DURATION: ;
-                codec_specific_configuration_frame_duration csc_b;
-                additional_data.codec_specific_configuration = &csc_b;
-                memcpy(&additional_data, &sink_ase_val.additional_ase_params, (sizeof(additional_data) - 1) + sizeof(csc_b));
+                codec_specific_configuration_frame_duration csc_fd;
+                memcpy(&csc_fd, additional_data.codec_specific_configuration, sizeof(csc_fd));
+                ADD_VARIED_U8_TO_BUF(buf, csc_sf, len);
                 break;
             case CSC_TYPE_AUDIO_CHANNEL_ALLOCATION: ;
-                codec_specific_configuration_audio_channel_allocation csc_c;
-                additional_data.codec_specific_configuration = &csc_c;
-                memcpy(&additional_data, &sink_ase_val.additional_ase_params, (sizeof(additional_data) - 1) + sizeof(csc_c));
+                codec_specific_configuration_audio_channel_allocation csc_aca;
+                memcpy(&csc_aca, additional_data.codec_specific_configuration, sizeof(csc_aca));
+                ADD_VARIED_U8_TO_BUF(buf, csc_sf, len);
                 break;
             case CSC_TYPE_OCTETS_PER_CODEC_FRAME: ;
-                codec_specific_configuration_octets_per_codec_frame csc_d;
-                additional_data.codec_specific_configuration = &csc_d;
-                memcpy(&additional_data, &sink_ase_val.additional_ase_params, (sizeof(additional_data) - 1) + sizeof(csc_d));
+                codec_specific_configuration_octets_per_codec_frame csc_opcf;
+                memcpy(&csc_opcf, additional_data.codec_specific_configuration, sizeof(csc_opcf));
+                ADD_VARIED_U8_TO_BUF(buf, csc_sf, len);
                 break;
             case CSC_TYPE_CODEC_FRAME_BLOCKS_PER_SDU: ;
-                codec_specific_configuration_codec_frame_blocks_per_sdu csc_e;
-                additional_data.codec_specific_configuration = &csc_e;
-                memcpy(&additional_data, &sink_ase_val.additional_ase_params, (sizeof(additional_data) - 1) + sizeof(csc_e));
+                codec_specific_configuration_codec_frame_blocks_per_sdu csc_cfbps;
+                memcpy(&csc_cfbps, additional_data.codec_specific_configuration, sizeof(csc_cfbps));
+                ADD_VARIED_U8_TO_BUF(buf, csc_sf, len);
                 break;
         }
-        memcpy(&buf[sizeof(additional_data) - 1], additional_data.codec_specific_configuration, additional_data.codec_specific_configuration_length);
+
+        goto end;
     }
     else if(current_state == ASCS_SM_STATE_QOS_CONFIGURED)
     {
+        uint8_t buf[256];
 
+        ADD_U8_TO_BUF(buf, sink_ase_val.ase_id, len);
+        ADD_U8_TO_BUF(buf, sink_ase_val.ase_state, len);
+
+        sink_ase_csc_qos_configured additional_data;
+        memcpy(&additional_data, sink_ase_val.additional_ase_params, (sizeof(additional_data)));
+
+        ADD_U8_TO_BUF(buf, additional_data.cig_id, len);
+        ADD_U8_TO_BUF(buf, additional_data.cis_id, len);
+        ADD_ARR_TO_BUF(buf, additional_data.sdu_interval, len);
+        ADD_U8_TO_BUF(buf, additional_data.framing, len);
+        ADD_U8_TO_BUF(buf, additional_data.phy, len);
+        ADD_ARR_TO_BUF(buf, additional_data.max_sdu, len);
+        ADD_U8_TO_BUF(buf, additional_data.retransmission_number, len);
+        ADD_ARR_TO_BUF(buf, additional_data.max_transport_latency, len);
+        ADD_ARR_TO_BUF(buf, additional_data.presentation_delay, len);
+
+        goto end;
     }
     else if((current_state == ASCS_SM_STATE_ENABLING) ||
             (current_state == ASCS_SM_STATE_STREAMING) ||
             (current_state == ASCS_SM_STATE_DISABLING))
     {
+        uint8_t buf[256];
 
+        ADD_U8_TO_BUF(buf, sink_ase_val.ase_id, len);
+        ADD_U8_TO_BUF(buf, sink_ase_val.ase_state, len);
+
+        sink_ase_csc_enabling_streaming_disabling additional_data;
+        memcpy(&additional_data, sink_ase_val.additional_ase_params, (sizeof(additional_data)));
+
+        ADD_U8_TO_BUF(buf, additional_data.cig_id, len);
+        ADD_U8_TO_BUF(buf, additional_data.cis_id, len);
+        ADD_U8_TO_BUF(buf, additional_data.metadata_length, len);
+
+        metadata_empty metadata_type_finder;
+        memcpy(&metadata_type_finder, additional_data.metadata, sizeof(metadata_type_finder));
+
+        switch(metadata_type_finder.type)
+        {
+            case META_TYPE_PREFERRED_AUDIO_CONTEXTS: ;
+                metadata_preferred_audio_contexts meta_pac;
+                memcpy(&meta_pac, additional_data.metadata, sizeof(meta_pac));
+                ADD_VARIED_ARR_TO_BUF(buf, meta_pac, len);
+                break;
+            case META_TYPE_STREAMING_AUDIO_CONTEXTS: ;
+                metadata_streaming_audio_contexts meta_sac;
+                memcpy(&meta_sac, additional_data.metadata, sizeof(meta_sac));
+                ADD_VARIED_ARR_TO_BUF(buf, meta_sac, len);
+                break;
+            case META_TYPE_PROGRAM_INFO: ;
+                metadata_program_info meta_pi;
+                memcpy(&meta_pi, additional_data.metadata, sizeof(meta_pi));
+                ADD_VARIED_POINTER_TO_BUF(buf, meta_pi, len);
+                break;
+            case META_TYPE_LANGUAGE: ;
+                metadata_language meta_l;
+                memcpy(&meta_l, additional_data.metadata, sizeof(meta_l));
+                ADD_VARIED_ARR_TO_BUF(buf, meta_l, len);
+                break;
+            case META_TYPE_CCID_LIST: ;
+                metadata_ccid_list meta_cl;
+                memcpy(&meta_cl, additional_data.metadata, sizeof(meta_cl));
+                ADD_VARIED_POINTER_TO_BUF(buf, meta_cl, len);
+                break;
+            case META_TYPE_PARENTAL_RATING: ;
+                metadata_parental_rating meta_pr;
+                memcpy(&meta_pr, additional_data.metadata, sizeof(meta_pr));
+                ADD_VARIED_U8_TO_BUF(buf, meta_pr, len);
+                break;
+            case META_TYPE_PROGRAM_INFO_URI: ;
+                metadata_program_info_uri meta_pii;
+                memcpy(&meta_pii, additional_data.metadata, sizeof(meta_pii));
+                ADD_VARIED_POINTER_TO_BUF(buf, meta_pii, len);
+                break;
+            case META_TYPE_EXTENDED_METADATA: ;
+                metadata_extended_metadata meta_em;
+                memcpy(&meta_em, additional_data.metadata, sizeof(meta_em));
+                ADD_VARIED_POINTER_TO_BUF(buf, meta_em, len);
+                break;
+            case META_TYPE_VENDOR_SPECIFIC: ;
+                metadata_vendor_specific meta_vs;
+                memcpy(&meta_vs, additional_data.metadata, sizeof(meta_vs));
+                ADD_VARIED_POINTER_TO_BUF(buf, meta_vs, len);
+                break;
+            case META_TYPE_AUDIO_ACTIVE_STATE: ;
+                metadata_audio_active_state meta_aas;
+                memcpy(&meta_aas, additional_data.metadata, sizeof(meta_aas));
+                ADD_VARIED_U8_TO_BUF(buf, meta_aas, len);
+                break;
+            case META_TYPE_BROADCAST_ADUIO_IMMEDIATE_RENDERING_FLAG: ;
+                metadata_broadcast_audio_immediate_rendering_flag meta_bairf;
+                memcpy(&meta_bairf, additional_data.metadata, sizeof(meta_bairf));
+                ADD_U8_TO_BUF(buf, meta_bairf.length, len);
+                ADD_U8_TO_BUF(buf, meta_bairf.type, len);
+                break;
+
+            goto end;
+        }
     }
 
     end:
