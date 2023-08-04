@@ -18,7 +18,6 @@
 #define BT_CHAR_ASE_CONTROL_POINT_NOTIFY_ATTR_VAL_INDEX	(9)
 
 void ascs_init();
-struct bt_gatt_attr *get_attr(u8_t index);
 
 #endif 
 

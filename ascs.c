@@ -13,17 +13,25 @@
 #include "uuid.h"
 #include "ascs.h"
 #include "bt_log.h"
+#include "audioDataTypes.h"
+#include "ascsDataTypes.h"
 
 #define TP_PRIO configMAX_PRIORITIES - 5
 
 static void ble_ascs_connected(struct bt_conn *conn, u8_t err);
 static void ble_ascs_disconnected(struct bt_conn *conn, u8_t reason);
+static struct bt_gatt_attr *get_attr(u8_t index);
 
-struct bt_conn *ble_ascs_conn;
-struct bt_gatt_exchange_params exchg_mtu;
+static struct bt_conn *ble_ascs_conn;
+static struct bt_gatt_exchange_params exchg_mtu;
 
-int tx_mtu_size = 20;
+static int tx_mtu_size = 20;
 static u8_t isRegister = 0;
+
+ascs_sm_state current_state = ASCS_SM_STATE_IDLE;
+ascs_sm_evt new_event;
+
+DEFINE_SINK_ASE_VALUE(sink_ase_val);
 
 static struct bt_conn_cb ble_ascs_conn_callbacks = {
 	.connected	=   ble_ascs_connected,
@@ -91,15 +99,81 @@ static void ble_ascs_disconnected(struct bt_conn *conn, u8_t reason)
     ble_ascs_conn = NULL;
 }
 
-static int ble_sink_ase_recv_rd(struct bt_conn *conn,	const struct bt_gatt_attr *attr,
-                                        void *buf, u16_t len, u16_t offset)
+static int ble_sink_ase_recv_rd(struct bt_conn *_conn,	const struct bt_gatt_attr *_attr,
+                                        void *_buf, u16_t _len, u16_t _offset)
 {
-    int size = 9;
-    char data[9] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09};
+    
+    if((current_state == ASCS_SM_STATE_IDLE) || (current_state == ASCS_SM_STATE_RELEASING))
+    {
+        uint8_t buf[2];
+        buf[0] = sink_ase_val.ase_id;
+        buf[1] = sink_ase_val.ase_state;
+        _len = sizeof(buf);
+        memcpy(_buf, buf, _len);
+    }
+    else if(current_state == ASCS_SM_STATE_CODEC_CONFIGURED)
+    {
+        uint8_t buf[256];
+        buf[0] = sink_ase_val.ase_id;
+        buf[1] = sink_ase_val.ase_state;
 
-    memcpy(buf, data, size);
+        codec_specific_configuration_empty csc_type_finder;
+        sink_ase_csc_codec_configured additional_data = {
+            .codec_specific_configuration = &csc_type_finder,
+        };
+        memcpy(&additional_data, &sink_ase_val.additional_ase_params, sizeof(additional_data) - 1);
+        memcpy(&buf[2], &sink_ase_val.additional_ase_params, sizeof(additional_data) - 1);
 
-    return size;
+        if(additional_data.codec_specific_configuration_length == 0x00)
+        {
+            goto end;
+        }
+
+        memcpy(&additional_data, &sink_ase_val.additional_ase_params, (sizeof(additional_data) - 1) + sizeof(csc_type_finder));
+        switch(csc_type_finder.type)
+        {
+            case CSC_TYPE_SAMPLING_FREQUENCY: ;
+                codec_specific_configuration_sampling_frequency csc_a;
+                additional_data.codec_specific_configuration = &csc_a;
+                memcpy(&additional_data, &sink_ase_val.additional_ase_params, (sizeof(additional_data) - 1) + sizeof(csc_a));
+                break;
+            case CSC_TYPE_FRAME_DURATION: ;
+                codec_specific_configuration_frame_duration csc_b;
+                additional_data.codec_specific_configuration = &csc_b;
+                memcpy(&additional_data, &sink_ase_val.additional_ase_params, (sizeof(additional_data) - 1) + sizeof(csc_b));
+                break;
+            case CSC_TYPE_AUDIO_CHANNEL_ALLOCATION: ;
+                codec_specific_configuration_audio_channel_allocation csc_c;
+                additional_data.codec_specific_configuration = &csc_c;
+                memcpy(&additional_data, &sink_ase_val.additional_ase_params, (sizeof(additional_data) - 1) + sizeof(csc_c));
+                break;
+            case CSC_TYPE_OCTETS_PER_CODEC_FRAME: ;
+                codec_specific_configuration_octets_per_codec_frame csc_d;
+                additional_data.codec_specific_configuration = &csc_d;
+                memcpy(&additional_data, &sink_ase_val.additional_ase_params, (sizeof(additional_data) - 1) + sizeof(csc_d));
+                break;
+            case CSC_TYPE_CODEC_FRAME_BLOCKS_PER_SDU: ;
+                codec_specific_configuration_codec_frame_blocks_per_sdu csc_e;
+                additional_data.codec_specific_configuration = &csc_e;
+                memcpy(&additional_data, &sink_ase_val.additional_ase_params, (sizeof(additional_data) - 1) + sizeof(csc_e));
+                break;
+        }
+        memcpy(&buf[sizeof(additional_data) - 1], additional_data.codec_specific_configuration, additional_data.codec_specific_configuration_length);
+    }
+    else if(current_state == ASCS_SM_STATE_QOS_CONFIGURED)
+    {
+
+    }
+    else if((current_state == ASCS_SM_STATE_ENABLING) ||
+            (current_state == ASCS_SM_STATE_STREAMING) ||
+            (current_state == ASCS_SM_STATE_DISABLING))
+    {
+
+    }
+
+    end:
+    
+    return _len;
 }
 
 static int ble_ase_control_point_recv_wr(struct bt_conn *conn, const struct bt_gatt_attr *attr,
@@ -178,34 +252,6 @@ struct bt_gatt_attr *get_attr(u8_t index)
 }
 
 struct bt_gatt_service ble_ascs_server = BT_GATT_SERVICE(attrs);
-
-typedef enum {
-    ASCS_SM_STATE_IDLE = 0x00,
-    ASCS_SM_STATE_CODEC_CONFIGURED = 0x01,
-    ASCS_SM_STATE_QOS_CONFIGURED = 0x02,
-    ASCS_SM_STATE_ENABLING = 0x03,
-    ASCS_SM_STATE_STREAMING = 0x04,
-    ASCS_SM_STATE_DISABLING = 0x05,
-    ASCS_SM_STATE_RELEASING = 0x06,
-    ASCS_SM_STATE_LAST_ENTRY,
-} ascs_sm_state;
-
-typedef enum {
-    ASCS_SM_EVT_CONFIG_CODEC,
-    ASCS_SM_EVT_CONFIG_QOS,
-    ASCS_SM_EVT_RELEASED_CACHING,
-    ASCS_SM_EVT_RELEASED_NO_CACHING,
-    ASCS_SM_EVT_RELEASE,
-    ASCS_SM_EVT_ENABLE,
-    ASCS_SM_EVT_DISABLE,
-    ASCS_SM_EVT_UPDATE_METADATA,
-    ASCS_SM_EVT_RECEIVER_START_READY,
-    ASCS_SM_EVT_LAST_ENTRY,
-} ascs_sm_evt;
-
-typedef ascs_sm_state (*const ascsArrayEventHandler[ASCS_SM_STATE_LAST_ENTRY][ASCS_SM_EVT_LAST_ENTRY])(void *_data);
-
-typedef ascs_sm_state (*ascsEventHandler)(void *_data);
 
 ascs_sm_state idleSConfigCodecEHandler(void *_data)
 {
@@ -291,9 +337,6 @@ ascs_sm_state releasingSReleasedCachingEHandler(void *_data)
 {
     return ASCS_SM_STATE_CODEC_CONFIGURED;
 }
-
-ascs_sm_state current_state = ASCS_SM_STATE_IDLE;
-ascs_sm_evt new_event;
 
 static ascsArrayEventHandler stateMachine = {
         [ASCS_SM_STATE_IDLE] = {[ASCS_SM_EVT_CONFIG_CODEC] = idleSConfigCodecEHandler},
