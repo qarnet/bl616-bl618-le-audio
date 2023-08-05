@@ -7,22 +7,10 @@
  * BUFFER
 */
 
-typedef struct {
-    uint8_t buf[256];
-    int len;
-} audio_buffer;
-
-#define DEFINE_AUDIO_BUFFER(_name)  \
-    audio_buffer _name = {  \
-        .buf = {0}, \
-        .len = 0};
-
 #define ADD_U8_TO_BUF(_buf, _val)  \
-    _buf.buf[_buf.len] = _val;   \
-    _buf.len++;
+    net_buf_simple_add_u8(_buf, _val)
 #define ADD_ARR_TO_BUF(_buf, _arr) \
-    memcpy(&_buf.buf[_buf.len], _arr, sizeof(_arr));   \
-    _buf.len += sizeof(_arr);
+    net_buf_simple_add_mem(_buf, _arr, sizeof(_arr))
 #define ADD_VARIED_U8_TO_BUF(_buf, _struct)   \
     ADD_U8_TO_BUF(_buf, _struct.length);    \
     ADD_U8_TO_BUF(_buf, _struct.type);   \
@@ -34,8 +22,7 @@ typedef struct {
 #define ADD_VARIED_POINTER_TO_BUF(_buf, _struct)  \
     ADD_U8_TO_BUF(_buf, meta_pi.length);    \
     ADD_U8_TO_BUF(_buf, meta_pi.type);  \
-    memcpy(&_buf.buf[_buf.len], _struct.value, _struct.length); \
-    _buf.len += _struct.length;
+    net_buf_simple_add_mem(_buf, _struct.value, _struct.length)
 
 /**
  * CODEC SPECIFIC CONFIGURATION
