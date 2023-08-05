@@ -112,6 +112,7 @@ void bt_enable_cb(int err)
 
         bt_conn_cb_register(&ble_conn_callbacks);
         pacs_init();
+        ascs_init();
         // ble_audio_init();
         // ble_tp_init();
 

@@ -465,24 +465,42 @@ void stateMachineTask(void *_params)
 {
     for(;;)
     {
+        printf("TASK\r\n");
+        if(ulTaskNotifyTake(0, 0) == pdPASS)
+        {
+            current_state = stateMachine[current_state][new_event](NULL);
+        }
+        else
+        {
+            // Error
+        }
+
         k_sleep(1000);
     }
+
+    vTaskDelete(NULL);
 }
 
+TaskHandle_t state_machine_task_handle;
 void ascs_init()
 {
-    printf("ASCS Init\n");
-
-    // current_state = [current_state][new_event](NULL);
-    
-    return;
+    int err;
+    printf("ASCS Init\r\n");
 
     if( !isRegister )
     {
         isRegister = 1;
         bt_conn_cb_register(&ble_ascs_conn_callbacks);
         bt_gatt_service_register(&ble_ascs_server);
+        err = xTaskCreate(stateMachineTask, "taskNameStateMachine", 1000, NULL, 0, &state_machine_task_handle);
+        if(pdPASS != err)
+        {
+            printf("Error creating ascs task\r\n");
+            vTaskDelete(state_machine_task_handle);
+        }
     }
+
+    return;
 }
 
 
