@@ -88,6 +88,7 @@
 #ifndef uartPRIMARY_PRIORITY
 #define uartPRIMARY_PRIORITY (configMAX_PRIORITIES - 3)
 #endif
+#define configTASK_NOTIFICATION_ARRAY_ENTRIES   2
 /* Set the following definitions to 1 to include the API function, or zero
 to exclude the API function. */
 #define INCLUDE_vTaskPrioritySet         1

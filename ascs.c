@@ -30,6 +30,7 @@ static u8_t isRegister = 0;
 
 ascs_sm_state current_state = ASCS_SM_STATE_IDLE;
 ascs_sm_evt new_event;
+TaskHandle_t state_machine_task_handle;
 
 DEFINE_SINK_ASE_VALUE(sink_ase_val);
 
@@ -463,12 +464,13 @@ static ascsArrayEventHandler stateMachine = {
 
 void stateMachineTask(void *_params)
 {
+    uint32_t event;
     for(;;)
     {
         printf("TASK\r\n");
-        if(ulTaskNotifyTake(0, 0) == pdPASS)
+        if(pdTRUE == xTaskNotifyWaitIndexed(1, 0, 0xffffffff, &event, pdMS_TO_TICKS(0xFFFFFF)))
         {
-            current_state = stateMachine[current_state][new_event](NULL);
+            current_state = stateMachine[current_state][event](NULL);
         }
         else
         {
@@ -481,7 +483,6 @@ void stateMachineTask(void *_params)
     vTaskDelete(NULL);
 }
 
-TaskHandle_t state_machine_task_handle;
 void ascs_init()
 {
     int err;
@@ -499,6 +500,9 @@ void ascs_init()
             vTaskDelete(state_machine_task_handle);
         }
     }
+
+    // pdPASS == xTaskNotifyIndexed(state_machine_task_handle, 1, ASCS_SM_EVT_ENABLE, eSetValueWithOverwrite);
+    // pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_ENABLE, eSetValueWithOverwrite, 0);
 
     return;
 }
