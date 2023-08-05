@@ -4,6 +4,35 @@
 #include <stdint.h>
 
 /**
+ * BUFFER
+*/
+
+typedef struct {
+    uint8_t buf[256];
+    int len;
+} audio_buffer;
+
+#define ADD_U8_TO_BUF(_buf, _val)  \
+    _buf.buf[_buf.len] = _val;   \
+    _buf.len++;
+#define ADD_ARR_TO_BUF(_buf, _arr) \
+    memcpy(&_buf.buf[_buf.len], _arr, sizeof(_arr));   \
+    _buf.len += sizeof(_arr);
+#define ADD_VARIED_U8_TO_BUF(_buf, _struct)   \
+    ADD_U8_TO_BUF(_buf, _struct.length);    \
+    ADD_U8_TO_BUF(_buf, _struct.type);   \
+    ADD_U8_TO_BUF(_buf, _struct.value);
+#define ADD_VARIED_ARR_TO_BUF(_buf, _struct) \
+    ADD_U8_TO_BUF(_buf, _struct.length);    \
+    ADD_U8_TO_BUF(_buf, _struct.type);   \
+    ADD_ARR_TO_BUF(_buf, _struct.value);
+#define ADD_VARIED_POINTER_TO_BUF(_buf, _struct)  \
+    ADD_U8_TO_BUF(_buf, meta_pi.length);    \
+    ADD_U8_TO_BUF(_buf, meta_pi.type);  \
+    memcpy(&_buf.buf[_buf.len], _struct.value, _struct.length); \
+    _buf.len += _struct.length;
+
+/**
  * CODEC SPECIFIC CONFIGURATION
 */
 
