@@ -102,7 +102,7 @@ static void ble_ascs_disconnected(struct bt_conn *conn, u8_t reason)
 static int ble_sink_ase_recv_rd(struct bt_conn *_conn,	const struct bt_gatt_attr *_attr,
                                         void *_buf, u16_t _len, u16_t _offset)
 {
-    audio_buffer buffer;
+    DEFINE_AUDIO_BUFFER(buffer);
 
     if((current_state == ASCS_SM_STATE_IDLE) || (current_state == ASCS_SM_STATE_RELEASING))
     {

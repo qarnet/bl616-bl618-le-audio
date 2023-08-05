@@ -12,6 +12,11 @@ typedef struct {
     int len;
 } audio_buffer;
 
+#define DEFINE_AUDIO_BUFFER(_name)  \
+    audio_buffer _name = {  \
+        .buf = {0}, \
+        .len = 0};
+
 #define ADD_U8_TO_BUF(_buf, _val)  \
     _buf.buf[_buf.len] = _val;   \
     _buf.len++;
