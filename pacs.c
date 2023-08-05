@@ -112,16 +112,24 @@ static uint8_t pac_record[] = {
     0x01,
     ((BIT(15) | BIT(4) | BIT(2)) >> 8), 
     (uint8_t)(BIT(15) | BIT(4) | BIT(2)),
+    // Metadata_Length[0]
+    0x00,
+    // Metadata[0]
+    // 0x00,
     // Codec_Specific_Capabilities[1] - Supported-Frame-Durations
     0x02,
     BIT(1),
+    // Metadata_Length[1]
+    0x00,
+    // Metadata[1]
+    // 0x00,
     // Codec_Specific_Capabilities[2] - Supported_Octets_Per_Codec_Frame
     0x04,
     0x28,
     0x3c,
-    // Metadata_Length[0]
+    // Metadata_Length[2]
     0x00,
-    // Metadata[0]
+    // Metadata[2]
     // 0x00,
 };
 
