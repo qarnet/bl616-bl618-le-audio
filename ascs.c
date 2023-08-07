@@ -20,6 +20,7 @@
 
 static void ble_ascs_connected(struct bt_conn *conn, u8_t err);
 static void ble_ascs_disconnected(struct bt_conn *conn, u8_t reason);
+static void ble_ase_control_point_notify_val();
 static struct bt_gatt_attr *get_attr(u8_t index);
 
 static struct bt_conn *ble_ascs_conn;
@@ -33,6 +34,7 @@ ascs_sm_evt new_event;
 TaskHandle_t state_machine_task_handle;
 
 DEFINE_SINK_ASE_VALUE(sink_ase_val);
+DEFINE_ASE_CONTROL_POINT_VALUE(ase_cp_val);
 
 static struct bt_conn_cb ble_ascs_conn_callbacks = {
 	.connected	=   ble_ascs_connected,
@@ -101,6 +103,7 @@ static void ble_ascs_disconnected(struct bt_conn *conn, u8_t reason)
 }
 
 NET_BUF_SIMPLE_DEFINE(buffer, 256);
+NET_BUF_SIMPLE_DEFINE(ase_cp_buf, 256);
 
 static int ble_sink_ase_recv_rd(struct bt_conn *_conn,	const struct bt_gatt_attr *_attr,
                                         void *_buf, u16_t _len, u16_t _offset)
@@ -280,30 +283,82 @@ static int ble_sink_ase_recv_rd(struct bt_conn *_conn,	const struct bt_gatt_attr
     return buffer.len;
 }
 
-static int ble_ase_control_point_recv_wr(struct bt_conn *conn, const struct bt_gatt_attr *attr,
-                                        const void *buf, u16_t len, u16_t offset, u8_t flags)
+static int ble_ase_control_point_recv_wr(struct bt_conn *_conn, const struct bt_gatt_attr *_attr,
+                                        const void *_buf, u16_t _len, u16_t _offset, u8_t _flags)
 {
-    BT_WARN("recv data len=%d, offset=%d, flag=%d", len, offset, flags);
+    BT_WARN("recv data len=%d, offset=%d, flag=%d", _len, _offset, _flags);
 
-    if (flags & BT_GATT_WRITE_FLAG_PREPARE)
+    uint8_t buf_u8[_len];
+    uint8_t opcode;
+
+    memcpy(buf_u8, _buf, _len);
+    opcode = buf_u8[0];
+
+    switch(opcode)
     {
-        //Don't use prepare write data, execute write will upload data again.
-        BT_WARN("rcv prepare write request");
-        return 0;
+        case ASE_CP_CONFIG_CODEC:
+            if(current_state == ASCS_SM_STATE_IDLE ||
+               current_state == ASCS_SM_STATE_CODEC_CONFIGURED ||
+               current_state == ASCS_SM_STATE_QOS_CONFIGURED)
+            {
+                pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_CONFIG_CODEC, eSetValueWithOverwrite, 0);
+            }
+            break;
+        case ASE_CP_CONFIG_QOS:
+            if(current_state == ASCS_SM_STATE_CODEC_CONFIGURED ||
+               current_state == ASCS_SM_STATE_QOS_CONFIGURED)
+            {
+                pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_CONFIG_QOS, eSetValueWithOverwrite, 0);
+            }
+            break;
+        case ASE_CP_ENABLE:
+            if(current_state == ASCS_SM_STATE_QOS_CONFIGURED)
+            {
+                pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_ENABLE, eSetValueWithOverwrite, 0);
+            }
+            break;
+        case ASE_CP_RECEIVER_START_READY:
+            if(current_state == ASCS_SM_STATE_ENABLING)
+            {
+                pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_RECEIVER_START_READY, eSetValueWithOverwrite, 0);
+            }
+            break;
+        case ASE_CP_DISABLE:
+            if(current_state == ASCS_SM_STATE_ENABLING ||
+               current_state == ASCS_SM_STATE_STREAMING)
+            {
+                pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_DISABLE, eSetValueWithOverwrite, 0);
+            }
+            break;
+        case ASE_CP_RECEIVER_STOP_READY:
+            if(current_state == ASCS_SM_STATE_DISABLING)
+            {
+                pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_DISABLE, eSetValueWithOverwrite, 0);
+            }
+            break;
+        case ASE_CP_UPDATE_METADATA:
+            if(current_state == ASCS_SM_STATE_ENABLING ||
+               current_state == ASCS_SM_STATE_STREAMING)
+            {
+                pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_UPDATE_METADATA, eSetValueWithOverwrite, 0);
+            }
+            break;
+        case ASE_CP_RELEASE:
+            if(current_state == ASCS_SM_STATE_CODEC_CONFIGURED ||
+               current_state == ASCS_SM_STATE_QOS_CONFIGURED ||
+               current_state == ASCS_SM_STATE_ENABLING ||
+               current_state == ASCS_SM_STATE_STREAMING ||
+               current_state == ASCS_SM_STATE_DISABLING)
+            {
+                pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_RELEASE, eSetValueWithOverwrite, 0);
+            }
+            break;
+        default:
+            printf("Undefined Opcopde\r\n");
+            break;
     }
 
-    if(flags & BT_GATT_WRITE_FLAG_CMD)
-    {
-        //Use write command data.
-        BT_WARN("rcv write command");
-    }
-    else
-    {
-        //Use write request / execute write data.
-        BT_WARN("rcv write request / exce write");
-    }
-
-    return len;
+    return _len;
 }
 
 static void ble_sink_ase_notify_ccc_changed(const struct bt_gatt_attr *attr, u16_t value)
@@ -316,6 +371,33 @@ static void ble_sink_ase_notify_ccc_changed(const struct bt_gatt_attr *attr, u16
         err = bt_gatt_notify(ble_ascs_conn, get_attr(BT_CHAR_SINK_ASE_NOTIFY_ATTR_VAL_INDEX), data, (tx_mtu_size - 3));
         BT_WARN("ble tp send notify : %d", err);
     }
+}
+
+static void ble_ase_control_point_notify_val()
+{
+    int err;
+
+    net_buf_simple_init(&ase_cp_buf, 0);
+
+    ADD_U8_TO_BUF(&ase_cp_buf, ase_cp_val.opcode);
+    ADD_U8_TO_BUF(&ase_cp_buf, ase_cp_val.number_of_ases);
+
+    if(0xFF != ase_cp_val.number_of_ases)
+    {
+        net_buf_simple_add_mem(&ase_cp_buf, ase_cp_val.ase_data, ase_cp_val.number_of_ases * sizeof(ase_cp_data_array));
+    }
+    else
+    {
+        net_buf_simple_add_mem(&ase_cp_buf, ase_cp_val.ase_data, 1 * sizeof(ase_cp_data_array));
+    }
+
+    err = bt_gatt_notify(ble_ascs_conn, get_attr(BT_CHAR_ASE_CONTROL_POINT_NOTIFY_ATTR_VAL_INDEX), ase_cp_buf.data, ase_cp_buf.len);
+    if(err != 0)
+    {
+        printf("Error notifying of ase control point value (err %d)\r\n", err);
+    }
+
+    net_buf_simple_reset(&ase_cp_buf);
 }
 
 static void ble_ase_control_point_notify_ccc_changed(const struct bt_gatt_attr *attr, u16_t value)

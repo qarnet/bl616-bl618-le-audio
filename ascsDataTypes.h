@@ -92,4 +92,36 @@ typedef struct {
         .metadata_length = _metadata_len,   \
         .metadata = _metadata};
 
+/**
+ * ASE CONTROL POINT
+*/
+
+#define ASE_CP_MAX_NUM_OF_ASE 10
+
+typedef enum {
+    ASE_CP_CONFIG_CODEC = 0x01,
+    ASE_CP_CONFIG_QOS = 0x02,
+    ASE_CP_ENABLE = 0x03,
+    ASE_CP_RECEIVER_START_READY = 0x04,
+    ASE_CP_DISABLE = 0x05,
+    ASE_CP_RECEIVER_STOP_READY = 0x06,
+    ASE_CP_UPDATE_METADATA = 0x07,
+    ASE_CP_RELEASE = 0x08,
+} ase_control_point_opcode;
+
+typedef struct {
+    uint8_t ase_id;
+    uint8_t response_code;
+    uint8_t reason;
+} ase_cp_data_array;
+
+typedef struct {
+    uint8_t opcode;
+    uint8_t number_of_ases;
+    ase_cp_data_array ase_data[ASE_CP_MAX_NUM_OF_ASE];
+} ase_cp_value;
+
+#define DEFINE_ASE_CONTROL_POINT_VALUE(_name)    \
+    ase_cp_value _name;
+
 #endif
