@@ -9,6 +9,7 @@ sdk_add_include_directories(.)
 target_sources(app PRIVATE
     ascs.c
     pacs.c
+    audio.c
 )
 
 sdk_set_main_file(main.c)
