@@ -108,6 +108,7 @@ NET_BUF_SIMPLE_DEFINE(ase_cp_buf, 256);
 static int ble_sink_ase_recv_rd(struct bt_conn *_conn,	const struct bt_gatt_attr *_attr,
                                         void *_buf, u16_t _len, u16_t _offset)
 {
+    BT_WARN("Recv read\n");
     net_buf_simple_init(&buffer, 0);
 
     if((current_state == ASCS_SM_STATE_IDLE) || (current_state == ASCS_SM_STATE_RELEASING))
@@ -301,46 +302,67 @@ static int ble_ase_control_point_recv_wr(struct bt_conn *_conn, const struct bt_
                current_state == ASCS_SM_STATE_CODEC_CONFIGURED ||
                current_state == ASCS_SM_STATE_QOS_CONFIGURED)
             {
-                pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_CONFIG_CODEC, eSetValueWithOverwrite, 0);
+                if(pdPASS != xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_CONFIG_CODEC, eSetValueWithOverwrite, 0))
+                {
+                    BT_WARN("couldn't notify task");
+                }
             }
             break;
         case ASE_CP_CONFIG_QOS:
             if(current_state == ASCS_SM_STATE_CODEC_CONFIGURED ||
                current_state == ASCS_SM_STATE_QOS_CONFIGURED)
             {
-                pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_CONFIG_QOS, eSetValueWithOverwrite, 0);
+                if(pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_CONFIG_QOS, eSetValueWithOverwrite, 0))
+                {
+                    BT_WARN("couldn't notify task");
+                }
             }
             break;
         case ASE_CP_ENABLE:
             if(current_state == ASCS_SM_STATE_QOS_CONFIGURED)
             {
-                pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_ENABLE, eSetValueWithOverwrite, 0);
+                if(pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_ENABLE, eSetValueWithOverwrite, 0))
+                {
+                    BT_WARN("couldn't notify task");
+                }
             }
             break;
         case ASE_CP_RECEIVER_START_READY:
             if(current_state == ASCS_SM_STATE_ENABLING)
             {
-                pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_RECEIVER_START_READY, eSetValueWithOverwrite, 0);
+                if(pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_RECEIVER_START_READY, eSetValueWithOverwrite, 0))
+                {
+                    BT_WARN("couldn't notify task");
+                }
             }
             break;
         case ASE_CP_DISABLE:
             if(current_state == ASCS_SM_STATE_ENABLING ||
                current_state == ASCS_SM_STATE_STREAMING)
             {
-                pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_DISABLE, eSetValueWithOverwrite, 0);
+                if(pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_DISABLE, eSetValueWithOverwrite, 0))
+                {
+                    BT_WARN("couldn't notify task");
+                }
             }
             break;
         case ASE_CP_RECEIVER_STOP_READY:
             if(current_state == ASCS_SM_STATE_DISABLING)
             {
-                pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_DISABLE, eSetValueWithOverwrite, 0);
+                if(pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_DISABLE, eSetValueWithOverwrite, 0))
+                {
+                    BT_WARN("couldn't notify task");
+                }
             }
             break;
         case ASE_CP_UPDATE_METADATA:
             if(current_state == ASCS_SM_STATE_ENABLING ||
                current_state == ASCS_SM_STATE_STREAMING)
             {
-                pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_UPDATE_METADATA, eSetValueWithOverwrite, 0);
+                if(pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_UPDATE_METADATA, eSetValueWithOverwrite, 0))
+                {
+                    BT_WARN("couldn't notify task");
+                }
             }
             break;
         case ASE_CP_RELEASE:
@@ -350,7 +372,10 @@ static int ble_ase_control_point_recv_wr(struct bt_conn *_conn, const struct bt_
                current_state == ASCS_SM_STATE_STREAMING ||
                current_state == ASCS_SM_STATE_DISABLING)
             {
-                pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_RELEASE, eSetValueWithOverwrite, 0);
+                if(pdPASS == xTaskNotifyFromISR(state_machine_task_handle, ASCS_SM_EVT_RELEASE, eSetValueWithOverwrite, 0))
+                {
+                    BT_WARN("couldn't notify task");
+                }
             }
             break;
         default:
@@ -363,14 +388,15 @@ static int ble_ase_control_point_recv_wr(struct bt_conn *_conn, const struct bt_
 
 static void ble_sink_ase_notify_ccc_changed(const struct bt_gatt_attr *attr, u16_t value)
 {
+    BT_WARN("1");
     int err = -1;
     char data[244] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09};
 
-    while(1)
-    {
-        err = bt_gatt_notify(ble_ascs_conn, get_attr(BT_CHAR_SINK_ASE_NOTIFY_ATTR_VAL_INDEX), data, (tx_mtu_size - 3));
-        BT_WARN("ble tp send notify : %d", err);
-    }
+    // while(1)
+    // {
+    //     err = bt_gatt_notify(ble_ascs_conn, get_attr(BT_CHAR_SINK_ASE_NOTIFY_ATTR_VAL_INDEX), data, (tx_mtu_size - 3));
+    //     BT_WARN("ble tp send notify : %d", err);
+    // }
 }
 
 static void ble_ase_control_point_notify_val()
@@ -382,13 +408,13 @@ static void ble_ase_control_point_notify_val()
     ADD_U8_TO_BUF(&ase_cp_buf, ase_cp_val.opcode);
     ADD_U8_TO_BUF(&ase_cp_buf, ase_cp_val.number_of_ases);
 
-    if(0xFF != ase_cp_val.number_of_ases)
+    if((0xFF == ase_cp_val.number_of_ases) || (0 == ase_cp_val.number_of_ases))
     {
-        net_buf_simple_add_mem(&ase_cp_buf, ase_cp_val.ase_data, ase_cp_val.number_of_ases * sizeof(ase_cp_data_array));
+        net_buf_simple_add_mem(&ase_cp_buf, ase_cp_val.ase_data, 1 * sizeof(ase_cp_data_array));
     }
     else
     {
-        net_buf_simple_add_mem(&ase_cp_buf, ase_cp_val.ase_data, 1 * sizeof(ase_cp_data_array));
+        net_buf_simple_add_mem(&ase_cp_buf, ase_cp_val.ase_data, ase_cp_val.number_of_ases * sizeof(ase_cp_data_array));
     }
 
     err = bt_gatt_notify(ble_ascs_conn, get_attr(BT_CHAR_ASE_CONTROL_POINT_NOTIFY_ATTR_VAL_INDEX), ase_cp_buf.data, ase_cp_buf.len);
@@ -402,14 +428,15 @@ static void ble_ase_control_point_notify_val()
 
 static void ble_ase_control_point_notify_ccc_changed(const struct bt_gatt_attr *attr, u16_t value)
 {
+    BT_WARN("3");
     int err = -1;
     char data[244] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09};
 
-    while(1)
-    {
-        err = bt_gatt_notify(ble_ascs_conn, get_attr(BT_CHAR_ASE_CONTROL_POINT_NOTIFY_ATTR_VAL_INDEX), data, (tx_mtu_size - 3));
-        BT_WARN("ble tp send notify : %d", err);
-    }
+//     while(1)
+//     {
+//         err = bt_gatt_notify(ble_ascs_conn, get_attr(BT_CHAR_ASE_CONTROL_POINT_NOTIFY_ATTR_VAL_INDEX), data, (tx_mtu_size - 3));
+//         BT_WARN("ble tp send notify : %d", err);
+//     }
 }
 
 static struct bt_gatt_attr attrs[]= {
@@ -425,7 +452,7 @@ static struct bt_gatt_attr attrs[]= {
 
 	BT_GATT_CHARACTERISTIC(BT_UUID_CHRC_ASE_CONTROL_POINT,
 							BT_GATT_CHRC_WRITE |BT_GATT_CHRC_WRITE_WITHOUT_RESP | BT_GATT_CHRC_NOTIFY,
-							BT_GATT_PERM_WRITE_ENCRYPT,
+							BT_GATT_PERM_WRITE_ENCRYPT | BT_GATT_PERM_WRITE,
 							NULL,
 							ble_ase_control_point_recv_wr,
 							NULL),
@@ -441,86 +468,120 @@ struct bt_gatt_service ble_ascs_server = BT_GATT_SERVICE(attrs);
 
 ascs_sm_state idleSConfigCodecEHandler(void *_data)
 {
+    printf("idleSConfigCodecEHandler\r\n");
+
     return ASCS_SM_STATE_CODEC_CONFIGURED;
 }
 
 ascs_sm_state codecConfiguredSConfigCodecEHandler(void *_data)
 {
+    printf("codecConfiguredSConfigCodecEHandler\r\n");
+
     return ASCS_SM_STATE_CODEC_CONFIGURED;
 }
 
 ascs_sm_state codecConfiguredSReleaseEHandler(void *_data)
 {
+    printf("codecConfiguredSReleaseEHandler\r\n");
+
     return ASCS_SM_STATE_RELEASING;
 }
 
 ascs_sm_state codecConfiguredSconfigQoSEHandler(void *_data)
 {
+    printf("codecConfiguredSconfigQoSEHandler\r\n");
+
     return ASCS_SM_STATE_QOS_CONFIGURED;
 }
 
 ascs_sm_state qoSConfiguredSConfigCodecEHandler(void *_data)
 {
+    printf("qoSConfiguredSConfigCodecEHandler\r\n");
+
     return ASCS_SM_STATE_CODEC_CONFIGURED;
 }
 
 ascs_sm_state qoSConfiguredSConfigQoSEHandler(void *_data)
 {
+    printf("qoSConfiguredSConfigQoSEHandler\r\n");
+
     return ASCS_SM_STATE_QOS_CONFIGURED;
 }
 
 ascs_sm_state qoSConfiguredSReleaseEHandler(void *_data)
 {
+    printf("qoSConfiguredSReleaseEHandler\r\n");
+
     return ASCS_SM_STATE_RELEASING;
 }
 
 ascs_sm_state qoSConfiguredSEnableEHandler(void *_data)
 {
+    printf("qoSConfiguredSEnableEHandler\r\n");
+
     return ASCS_SM_STATE_ENABLING;
 }
 
 ascs_sm_state enablingSReleaseEHandler(void *_data)
 {
+    printf("enablingSReleaseEHandler\r\n");
+
     return ASCS_SM_STATE_RELEASING;
 }
 
 ascs_sm_state enablingSUpdateMetadataEHandler(void *_data)
 {
+    printf("enablingSUpdateMetadataEHandler\r\n");
+
     return ASCS_SM_STATE_ENABLING;
 }
 
 ascs_sm_state enablingSDisableEHandler(void *_data)
 {
+    printf("enablingSDisableEHandler\r\n");
+
     return ASCS_SM_STATE_QOS_CONFIGURED;
 }
 
 ascs_sm_state enablingSReceiverStartReadyEHandler(void *_data)
 {
+    printf("enablingSReceiverStartReadyEHandler\r\n");
+
     return ASCS_SM_STATE_STREAMING;
 }
 
 ascs_sm_state streamingSUpdateMetadataEHandler(void *_data)
 {
+    printf("streamingSUpdateMetadataEHandler\r\n");
+
     return ASCS_SM_STATE_STREAMING;
 }
 
 ascs_sm_state streamingSDisableEHandler(void *_data)
 {
+    printf("streamingSDisableEHandler\r\n");
+
     return ASCS_SM_STATE_QOS_CONFIGURED;
 }
 
 ascs_sm_state streamingSReleaseEHandler(void *_data)
 {
+    printf("streamingSReleaseEHandler\r\n");
+
     return ASCS_SM_STATE_RELEASING;
 }
 
 ascs_sm_state releasingSReleasedNoCachingEHandler(void *_data)
 {
+    printf("releasingSReleasedNoCachingEHandler\r\n");
+
     return ASCS_SM_STATE_IDLE;
 }
 
 ascs_sm_state releasingSReleasedCachingEHandler(void *_data)
 {
+    printf("releasingSReleasedCachingEHandler\r\n");
+
     return ASCS_SM_STATE_CODEC_CONFIGURED;
 }
 
@@ -549,17 +610,15 @@ void stateMachineTask(void *_params)
     uint32_t event;
     for(;;)
     {
-        printf("TASK\r\n");
-        if(pdTRUE == xTaskNotifyWaitIndexed(1, 0, 0xffffffff, &event, pdMS_TO_TICKS(0xFFFFFF)))
+        if(pdTRUE == xTaskNotifyWaitIndexed(0, 0, 0xffffffff, &event, pdMS_TO_TICKS(0xFFFFFF)))
         {
             current_state = stateMachine[current_state][event](NULL);
         }
         else
         {
+            BT_WARN("task err");
             // Error
         }
-
-        k_sleep(1000);
     }
 
     vTaskDelete(NULL);
