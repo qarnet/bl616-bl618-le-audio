@@ -30,30 +30,38 @@ static struct bt_gatt_exchange_params exchg_mtu;
 static int tx_mtu_size = 20;
 static u8_t isRegister = 0;
 
-DEFINE_SINK_PAC_CHRC_VALUE(sink_pac_val);
+// DEFINE_SINK_PAC_CHRC_VALUE(sink_pac_val);
 DEFINE_SINK_AUDIO_LOCATIONS_CHRC_VALUE(sink_audio_loc_val);
 DEFINE_AVAILABLE_AUDIO_CONTEXTS_CHRC_VALUE(avail_audio_cntxt_val);
 DEFINE_SUPPORTED_AUDIO_CONTEXTS_CHRC_VALUE(supp_audio_cntxt_val);
 
+/**
+ * Very bad way to define le_audio pac record
+*/
+
 codec_specific_capabilities_supported_sampling_frequencies csc_one = {
     .length = 0x03,
     .type = 0x01,
-    .value = (uint16_t)(BIT(2) | BIT(4))
+    .value =  { 0, (BIT(2) | BIT(4)) }
 };
 codec_specific_capabilities_supported_frame_durations csc_two = {
     .length = 0x02,
     .type = 0x02,
-    .value = BIT(1)
+    .value = { BIT(1) }
 };
 codec_specific_capabilities_supported_octets_per_codec_frame csc_three = {
     .length = 0x05,
     .type = 0x04,
-    .value = (uint32_t)(0x28) | (uint32_t)(0x3c << 16)
+    .value = { 0x3c, 0x28 }
 };
 
-sink_pac_chrc_value pac_record_le_audio = {
-    .number_of_pac_records = 1,
-};
+uint8_t lc3_codec_id[] = { 0x06, 0, 0, 0, 0 };
+
+sink_pac_chrc_value sink_pac_val;
+
+/**
+ * BT CONN
+*/
 
 static struct bt_conn_cb ble_pacs_conn_callbacks = {
 	.connected	=   ble_pacs_connected,
@@ -185,12 +193,22 @@ static int ble_sink_pac_recv_rd(struct bt_conn *_conn,	const struct bt_gatt_attr
     for(int i = 0; i < sink_pac_val.number_of_pac_records; i++)
     {
         net_buf_simple_add_mem(&sink_pac_read_buf, sink_pac_val.data[i].codec_id, sizeof(sink_pac_val.data[i].codec_id));
+
         uint8_t csc_extract[sink_pac_val.data[i].codec_specific_capabilities_length];
-        memcpy(csc_extract, sink_pac_val.data[i].codec_specific_capabilities, sink_pac_val.data[i].codec_specific_capabilities_length);
-        extractCodecSpecificCapabilities(csc_extract, &sink_pac_read_buf);
+        net_buf_simple_add_u8(&sink_pac_read_buf, sink_pac_val.data[i].codec_specific_capabilities_length);
+        if(sink_pac_val.data[i].codec_specific_capabilities_length > 0)
+        {
+            memcpy(csc_extract, sink_pac_val.data[i].codec_specific_capabilities, sink_pac_val.data[i].codec_specific_capabilities_length);
+            extractCodecSpecificCapabilities(csc_extract, &sink_pac_read_buf); //TODO: This extract doesn't work correctly
+        }
+        
         uint8_t metadata_extract[sink_pac_val.data[i].metadata_length];
-        memcpy(metadata_extract, sink_pac_val.data[i].metadata, sink_pac_val.data[i].metadata_length);
-        extractMetadata(metadata_extract, &sink_pac_read_buf);
+        net_buf_simple_add_u8(&sink_pac_read_buf, sink_pac_val.data[i].metadata_length);
+        if(sink_pac_val.data[i].metadata > 0)
+        {
+            memcpy(metadata_extract, sink_pac_val.data[i].metadata, sink_pac_val.data[i].metadata_length);
+            extractMetadata(metadata_extract, &sink_pac_read_buf);
+        }
     }
 
     len = sink_pac_read_buf.len;
@@ -385,6 +403,23 @@ static struct bt_gatt_attr *get_attr(u8_t index)
 int pacs_init()
 {
     printf("%s\r\n", "US_PACS");
+    
+    sink_pac_val.number_of_pac_records = 3;
+
+    memcpy(sink_pac_val.data[0].codec_id, lc3_codec_id, sizeof(sink_pac_val.data[0].codec_id));
+    sink_pac_val.data[0].codec_specific_capabilities_length = csc_one.length + 1;
+    sink_pac_val.data[0].codec_specific_capabilities = &csc_one;
+    sink_pac_val.data[0].metadata_length = 0;
+
+    memcpy(sink_pac_val.data[1].codec_id, lc3_codec_id, sizeof(sink_pac_val.data[0].codec_id));
+    sink_pac_val.data[1].codec_specific_capabilities_length = csc_two.length + 1;
+    sink_pac_val.data[1].codec_specific_capabilities = &csc_two;
+    sink_pac_val.data[1].metadata_length = 0;
+
+    memcpy(sink_pac_val.data[2].codec_id, lc3_codec_id, sizeof(sink_pac_val.data[0].codec_id));
+    sink_pac_val.data[2].codec_specific_capabilities_length = csc_three.length + 1;
+    sink_pac_val.data[2].codec_specific_capabilities = &csc_three;
+    sink_pac_val.data[2].metadata_length = 0;
 
     if( !isRegister )
     {
