@@ -147,7 +147,12 @@ int main(void)
 #endif
     // Initialize BLE Host stack
     hci_driver_init();
-    bt_enable(bt_enable_cb);
+    // bt_enable(bt_enable_cb);
+    NET_BUF_SIMPLE_DEFINE(test, 100);
+    net_buf_simple_init(&test, 0);
+    uint8_t testy = 8;
+    net_buf_simple_add_mem(&test, testy, 1);
+    printf("%d\n", net_buf_simple_pull_mem(&test, 1));
 
     vTaskStartScheduler();
 

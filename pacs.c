@@ -35,6 +35,26 @@ DEFINE_SINK_AUDIO_LOCATIONS_CHRC_VALUE(sink_audio_loc_val);
 DEFINE_AVAILABLE_AUDIO_CONTEXTS_CHRC_VALUE(avail_audio_cntxt_val);
 DEFINE_SUPPORTED_AUDIO_CONTEXTS_CHRC_VALUE(supp_audio_cntxt_val);
 
+codec_specific_capabilities_supported_sampling_frequencies csc_one = {
+    .length = 0x03,
+    .type = 0x01,
+    .value = (uint16_t)(BIT(2) | BIT(4))
+};
+codec_specific_capabilities_supported_frame_durations csc_two = {
+    .length = 0x02,
+    .type = 0x02,
+    .value = BIT(1)
+};
+codec_specific_capabilities_supported_octets_per_codec_frame csc_three = {
+    .length = 0x05,
+    .type = 0x04,
+    .value = (uint32_t)(0x28) | (uint32_t)(0x3c << 16)
+};
+
+sink_pac_chrc_value pac_record_le_audio = {
+    .number_of_pac_records = 1,
+};
+
 static struct bt_conn_cb ble_pacs_conn_callbacks = {
 	.connected	=   ble_pacs_connected,
 	.disconnected	=   ble_pacs_disconnected,
@@ -142,6 +162,8 @@ static void ble_pacs_disconnected(struct bt_conn *conn, u8_t reason)
 //     // 0x00,
 // };
 
+
+
 /*************************************************************************
 *  Reads
 *************************************************************************/
@@ -162,9 +184,13 @@ static int ble_sink_pac_recv_rd(struct bt_conn *_conn,	const struct bt_gatt_attr
 
     for(int i = 0; i < sink_pac_val.number_of_pac_records; i++)
     {
-        net_buf_simple_add_mem(&sink_pac_read_buf, sink_pac_val.sub_data[i].codec_id, sizeof(sink_pac_val.sub_data[i].codec_id));
-        extractCodecSpecificCapabilities(sink_pac_val.sub_data[i].codec_specific_capabilities, &sink_pac_read_buf);
-        extractMetadata(sink_pac_val.sub_data[i].metadata, &sink_pac_read_buf);
+        net_buf_simple_add_mem(&sink_pac_read_buf, sink_pac_val.data[i].codec_id, sizeof(sink_pac_val.data[i].codec_id));
+        uint8_t csc_extract[sink_pac_val.data[i].codec_specific_capabilities_length];
+        memcpy(csc_extract, sink_pac_val.data[i].codec_specific_capabilities, sink_pac_val.data[i].codec_specific_capabilities_length);
+        extractCodecSpecificCapabilities(csc_extract, &sink_pac_read_buf);
+        uint8_t metadata_extract[sink_pac_val.data[i].metadata_length];
+        memcpy(metadata_extract, sink_pac_val.data[i].metadata, sink_pac_val.data[i].metadata_length);
+        extractMetadata(metadata_extract, &sink_pac_read_buf);
     }
 
     len = sink_pac_read_buf.len;

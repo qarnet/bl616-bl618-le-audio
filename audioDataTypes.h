@@ -11,18 +11,10 @@
     net_buf_simple_add_u8(_buf, _val)
 #define ADD_ARR_TO_BUF(_buf, _arr) \
     net_buf_simple_add_mem(_buf, _arr, sizeof(_arr))
-#define ADD_VARIED_U8_TO_BUF(_buf, _struct)   \
-    ADD_U8_TO_BUF(_buf, _struct.length);    \
-    ADD_U8_TO_BUF(_buf, _struct.type);   \
-    ADD_U8_TO_BUF(_buf, _struct.value);
-#define ADD_VARIED_ARR_TO_BUF(_buf, _struct) \
-    ADD_U8_TO_BUF(_buf, _struct.length);    \
-    ADD_U8_TO_BUF(_buf, _struct.type);   \
-    ADD_ARR_TO_BUF(_buf, _struct.value);
-#define ADD_VARIED_POINTER_TO_BUF(_buf, _struct)  \
-    ADD_U8_TO_BUF(_buf, meta_pi.length);    \
-    ADD_U8_TO_BUF(_buf, meta_pi.type);  \
-    net_buf_simple_add_mem(_buf, _struct.value, _struct.length)
+#define ADD_AUDIO_STRUCT_TO_BUF(_buf, _struct)    \
+    net_buf_simple_add_u8(_buf, _struct.length);    \
+    net_buf_simple_add_u8(_buf, _struct.type);  \
+    if(_struct.length >= 0x01) net_buf_simple_add_mem(_buf, _struct.value, _struct.length);
 
 /**
  * CODEC SPECIFIC CONFIGURATION
@@ -44,7 +36,7 @@ typedef struct {
 typedef struct {
     uint8_t length;
     uint8_t type;
-    uint8_t value;
+    uint8_t value[1];
 } codec_specific_configuration_sampling_frequency;
 
 #define DEFINE_CSC_SAMPLING_FREQUENCY(_name, _data)    \
@@ -57,7 +49,7 @@ typedef struct {
 typedef struct {
     uint8_t length;
     uint8_t type;
-    uint8_t value;
+    uint8_t value[1];
 } codec_specific_configuration_frame_duration;
 
 #define DEFINE_CSC_CONFIGURATION_FRAME_DURATION(_name, _data)    \
@@ -96,7 +88,7 @@ typedef struct {
 typedef struct {
     uint8_t length;
     uint8_t type;
-    uint8_t value;
+    uint8_t value[1];
 } codec_specific_configuration_codec_frame_blocks_per_sdu;
 
 #define DEFINE_CSC_CODEC_FRAME_BLOCKS_PER_SDU(_name, _data)    \
@@ -105,6 +97,53 @@ typedef struct {
         .type = 0x05};  \
     (_name.length - 1) == sizeof(_data) ? _name.value = _data : ;
 
+
+/**
+ * CODEC SPECIFIC CAPABILITIES
+*/
+
+typedef enum  {
+    CODEC_SPECIFIC_CAPABILITY_TYPE_SUPPORTED_SAMPLING_FREQUENCY = 0x01,
+    CODEC_SPECIFIC_CAPABILITY_TYPE_SUPPORTED_FRAME_DURATION = 0x02,
+    CODEC_SPECIFIC_CAPABILITY_TYPE_SUPPORTED_AUDIO_CHANNEL_COUNTS = 0x03,
+    CODEC_SPECIFIC_CAPABILITY_TYPE_SUPPORTED_OCTETS_PER_CODEC_FRAME = 0x04,
+    CODEC_SPECIFIC_CAPABILITY_TYPE_SUPPORTED_MAX_CODEC_FRAMES_PER_SDU = 0x05
+} codec_specifc_capabilities_type;
+
+typedef struct {
+    uint8_t length;
+    uint8_t type;
+} codec_specific_capabilities_empty;
+
+typedef struct {
+    uint8_t length;
+    uint8_t type;
+    uint8_t value[2];
+} codec_specific_capabilities_supported_sampling_frequencies;
+
+typedef struct {
+    uint8_t length;
+    uint8_t type;
+    uint8_t value[1];
+} codec_specific_capabilities_supported_frame_durations;
+
+typedef struct {
+    uint8_t length;
+    uint8_t type;
+    uint8_t value[1];
+} codec_specific_capabilities_supported_audio_channel_counts;
+
+typedef struct {
+    uint8_t length;
+    uint8_t type;
+    uint8_t value[4];
+} codec_specific_capabilities_supported_octets_per_codec_frame;
+
+typedef struct {
+    uint8_t length;
+    uint8_t type;
+    uint8_t value[1];
+} codec_specific_capabilities_supported_max_codec_frames_per_sdu;
 
 /**
  * METADATA
@@ -202,7 +241,7 @@ typedef struct {
 typedef struct {
     uint8_t length;
     uint8_t type;
-    uint8_t value;
+    uint8_t value[1];
 } metadata_parental_rating;
 
 #define DEFINE_META_PARENTAL_RATING(_name, _data)    \
@@ -258,7 +297,7 @@ typedef struct {
 typedef struct {
     uint8_t length;
     uint8_t type;
-    uint8_t value;
+    uint8_t value[1];
 } metadata_audio_active_state;
 
 #define DEFINE_META_AUDIO_ACTIVE_STATE(_name, _data)    \

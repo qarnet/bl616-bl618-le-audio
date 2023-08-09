@@ -3,22 +3,23 @@
 
 #include <stdint.h>
 
+#define SINK_PAC_CHRC_VAL_MAX_AMNT 10
+
 typedef struct {
     uint8_t codec_id[5];
+    uint8_t codec_specific_capabilities_length;
     void *codec_specific_capabilities;
+    uint8_t metadata_length;
     void *metadata;
-} sink_pac_chrc_sub_data;
+} sink_pac_chrc_value_data;
 
 typedef struct {
     uint8_t number_of_pac_records;
-    sink_pac_chrc_sub_data *sub_data;
+    sink_pac_chrc_value_data data[SINK_PAC_CHRC_VAL_MAX_AMNT];
 } sink_pac_chrc_value;
 
-sink_pac_chrc_sub_data default_data[1];
-
 #define DEFINE_SINK_PAC_CHRC_VALUE(_name) \
-    sink_pac_chrc_value _name = {   \
-        .sub_data = default_data};
+    sink_pac_chrc_value _name;
 
 typedef struct {
     uint8_t sink_audio_locations[4];
