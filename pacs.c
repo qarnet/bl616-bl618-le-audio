@@ -42,7 +42,7 @@ DEFINE_SUPPORTED_AUDIO_CONTEXTS_CHRC_VALUE(supp_audio_cntxt_val);
 codec_specific_capabilities_supported_sampling_frequencies csc_one = {
     .length = 0x03,
     .type = 0x01,
-    .value =  { 0, (BIT(2) | BIT(4)) }
+    .value =  { (BIT(2) | BIT(4)), 0 }
 };
 codec_specific_capabilities_supported_frame_durations csc_two = {
     .length = 0x02,
@@ -52,7 +52,7 @@ codec_specific_capabilities_supported_frame_durations csc_two = {
 codec_specific_capabilities_supported_octets_per_codec_frame csc_three = {
     .length = 0x05,
     .type = 0x04,
-    .value = { 0x3c, 0x28 }
+    .value = { 0x28, 0, 0x3c, 0 }
 };
 
 uint8_t lc3_codec_id[] = { 0x06, 0, 0, 0, 0 };

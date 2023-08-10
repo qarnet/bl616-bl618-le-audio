@@ -14,7 +14,7 @@
 #define ADD_AUDIO_STRUCT_TO_BUF(_buf, _struct)    \
     net_buf_simple_add_u8(_buf, _struct.length);    \
     net_buf_simple_add_u8(_buf, _struct.type);  \
-    if(_struct.length >= 0x01) net_buf_simple_add_mem(_buf, _struct.value, _struct.length);
+    if(_struct.length >= 0x01) net_buf_simple_add_mem(_buf, _struct.value, _struct.length - 1); //length - 1, because the length includes the type
 
 /**
  * CODEC SPECIFIC CONFIGURATION
