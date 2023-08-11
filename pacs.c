@@ -18,6 +18,7 @@
 #include "audioDataTypes.h"
 #include "buf.h"
 #include "audio.h"
+#include "definesConfig.h"
 
 #define TP_PRIO configMAX_PRIORITIES - 5
 
@@ -38,7 +39,6 @@ DEFINE_SUPPORTED_AUDIO_CONTEXTS_CHRC_VALUE(supp_audio_cntxt_val);
 /**
  * Very bad way to define le_audio pac record
 */
-
 codec_specific_capabilities_supported_sampling_frequencies csc_one = {
     .length = 0x03,
     .type = 0x01,
@@ -54,9 +54,7 @@ codec_specific_capabilities_supported_octets_per_codec_frame csc_three = {
     .type = 0x04,
     .value = { 0x28, 0, 0x3c, 0 }
 };
-
 uint8_t lc3_codec_id[] = { 0x06, 0, 0, 0, 0 };
-
 sink_pac_chrc_value sink_pac_val;
 
 /**
@@ -130,47 +128,6 @@ static void ble_pacs_disconnected(struct bt_conn *conn, u8_t reason)
 
     ble_pacs_conn = NULL;
 }
-
-/*************************************************************************
-*  DATA
-*************************************************************************/
-
-// static uint8_t pac_record[] = {
-//     // Number_of_PAC_records
-//     0x01,
-
-//     // Codec_ID[0]
-//     0x06, // Coding_Format = LC3
-//     0x0000, // Company_ID
-//     0x0000, // Vendor-specific
-//     // Codec_Specific_Capabilities_Length[0]
-//     0x03,
-//     // Codec_Specific_Capabilities[0] - Supported_Sampling_Frequencies
-//     0x01,
-//     ((BIT(15) | BIT(4) | BIT(2)) >> 8), 
-//     (uint8_t)(BIT(15) | BIT(4) | BIT(2)),
-//     // Metadata_Length[0]
-//     0x00,
-//     // Metadata[0]
-//     // 0x00,
-//     // Codec_Specific_Capabilities[1] - Supported-Frame-Durations
-//     0x02,
-//     BIT(1),
-//     // Metadata_Length[1]
-//     0x00,
-//     // Metadata[1]
-//     // 0x00,
-//     // Codec_Specific_Capabilities[2] - Supported_Octets_Per_Codec_Frame
-//     0x04,
-//     0x28,
-//     0x3c,
-//     // Metadata_Length[2]
-//     0x00,
-//     // Metadata[2]
-//     // 0x00,
-// };
-
-
 
 /*************************************************************************
 *  Reads
@@ -278,6 +235,7 @@ static int ble_supported_audio_contexts_recv_rd(struct bt_conn *_conn,	const str
 *  Writes 
 *************************************************************************/
 
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
 static int ble_sink_audio_locations_recv_wr(struct bt_conn *conn, const struct bt_gatt_attr *attr,
                                         const void *buf, u16_t len, u16_t offset, u8_t flags)
 {
@@ -303,11 +261,13 @@ static int ble_sink_audio_locations_recv_wr(struct bt_conn *conn, const struct b
 
     return len;
 }
+#endif
 
 /*************************************************************************
 *  Notifies
 *************************************************************************/
 
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
 static void ble_sink_pac_notify_ccc_changed(const struct bt_gatt_attr *attr, u16_t value)
 {
     int err = -1;
@@ -318,7 +278,9 @@ static void ble_sink_pac_notify_ccc_changed(const struct bt_gatt_attr *attr, u16
         BT_WARN("ble tp send indatcate: %d", err);
     }
 }
+#endif
 
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
 static void ble_sink_audio_locations_notify_ccc_changed(const struct bt_gatt_attr *attr, u16_t value)
 {
     int err = -1;
@@ -329,6 +291,7 @@ static void ble_sink_audio_locations_notify_ccc_changed(const struct bt_gatt_att
         BT_WARN("ble tp send indatcate: %d", err);
     }
 }
+#endif
 
 static void ble_available_audio_contexts_notify_ccc_changed(const struct bt_gatt_attr *attr, u16_t value)
 {
@@ -341,6 +304,7 @@ static void ble_available_audio_contexts_notify_ccc_changed(const struct bt_gatt
     }
 }
 
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
 static void ble_supported_audio_contexts_notify_ccc_changed(const struct bt_gatt_attr *attr, u16_t value)
 {
     int err = -1;
@@ -351,6 +315,7 @@ static void ble_supported_audio_contexts_notify_ccc_changed(const struct bt_gatt
         BT_WARN("ble tp send indatcate: %d", err);
     }
 }
+#endif
 
 /*************************************************************************
 *  DEFINE : attrs 
@@ -360,20 +325,40 @@ static struct bt_gatt_attr attrs[]= {
 	BT_GATT_PRIMARY_SERVICE(BT_UUID_SVC_BLE_PACS),
 
     BT_GATT_CHARACTERISTIC(BT_UUID_CHRC_SINK_PAC,
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
 							BT_GATT_CHRC_READ | BT_GATT_CHRC_NOTIFY /*Optional*/,
+#else
+                            BT_GATT_CHRC_READ,
+#endif                            
 							BT_GATT_PERM_READ_ENCRYPT,
 							ble_sink_pac_recv_rd,
 							NULL,
 							NULL),
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
     BT_GATT_CCC(ble_sink_pac_notify_ccc_changed, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE),
+#endif
 
 	BT_GATT_CHARACTERISTIC(BT_UUID_CHRC_SINK_AUDIO_LOCATIONS,
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
 							BT_GATT_CHRC_READ | BT_GATT_CHRC_NOTIFY /*Optional*/ | BT_GATT_CHRC_WRITE /*Optional*/,
+#else
+                            BT_GATT_CHRC_READ,
+#endif
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
 							BT_GATT_PERM_READ_ENCRYPT | BT_GATT_PERM_WRITE_ENCRYPT,
+#else
+                            BT_GATT_PERM_READ_ENCRYPT,
+#endif
 							ble_sink_audio_locations_recv_rd,
-							ble_sink_audio_locations_recv_wr,
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
+                            ble_sink_audio_locations_recv_wr,
+#else
+                            NULL,
+#endif
 							NULL),
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
     BT_GATT_CCC(ble_sink_audio_locations_notify_ccc_changed, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE),
+#endif
 
 	BT_GATT_CHARACTERISTIC(BT_UUID_CHRC_AVAILABLE_AUDIO_CONTEXTS,
 							BT_GATT_CHRC_READ | BT_GATT_CHRC_NOTIFY,
@@ -384,12 +369,14 @@ static struct bt_gatt_attr attrs[]= {
     BT_GATT_CCC(ble_available_audio_contexts_notify_ccc_changed, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE),
 
 	BT_GATT_CHARACTERISTIC(BT_UUID_CHRC_SUPPORTED_AUDIO_CONTEXTS,
-							BT_GATT_CHRC_READ | BT_GATT_CHRC_NOTIFY /*Optional*/,
+							BT_GATT_CHRC_READ, // | BT_GATT_CHRC_NOTIFY /*Optional*/,
 							BT_GATT_PERM_READ_ENCRYPT,
 							ble_supported_audio_contexts_recv_rd,
 							NULL,
 							NULL),
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
     BT_GATT_CCC(ble_supported_audio_contexts_notify_ccc_changed, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE),
+#endif
 };
 
 struct bt_gatt_service ble_pacs_server = BT_GATT_SERVICE(attrs);
@@ -405,21 +392,22 @@ int pacs_init()
     printf("%s\r\n", "US_PACS");
     
     sink_pac_val.number_of_pac_records = 3;
-
     memcpy(sink_pac_val.data[0].codec_id, lc3_codec_id, sizeof(sink_pac_val.data[0].codec_id));
     sink_pac_val.data[0].codec_specific_capabilities_length = csc_one.length + 1;
     sink_pac_val.data[0].codec_specific_capabilities = &csc_one;
     sink_pac_val.data[0].metadata_length = 0;
-
     memcpy(sink_pac_val.data[1].codec_id, lc3_codec_id, sizeof(sink_pac_val.data[0].codec_id));
     sink_pac_val.data[1].codec_specific_capabilities_length = csc_two.length + 1;
     sink_pac_val.data[1].codec_specific_capabilities = &csc_two;
     sink_pac_val.data[1].metadata_length = 0;
-
     memcpy(sink_pac_val.data[2].codec_id, lc3_codec_id, sizeof(sink_pac_val.data[0].codec_id));
     sink_pac_val.data[2].codec_specific_capabilities_length = csc_three.length + 1;
     sink_pac_val.data[2].codec_specific_capabilities = &csc_three;
     sink_pac_val.data[2].metadata_length = 0;
+
+    uint64_t audio_location = AUDIO_LOC_DEF_LEFT_SURROUND & AUDIO_LOC_DEF_RIGHT_SURROUND;
+    memcpy(sink_audio_loc_val.sink_audio_locations, &audio_location, sizeof(sink_audio_loc_val.sink_audio_locations));
+
 
     if( !isRegister )
     {
