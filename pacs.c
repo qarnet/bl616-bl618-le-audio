@@ -31,6 +31,8 @@ static struct bt_gatt_exchange_params exchg_mtu;
 static int tx_mtu_size = 20;
 static u8_t isRegister = 0;
 
+static volatile bool avail_audio_cntxt_is_subbed = false;
+
 // DEFINE_SINK_PAC_CHRC_VALUE(sink_pac_val);
 DEFINE_SINK_AUDIO_LOCATIONS_CHRC_VALUE(sink_audio_loc_val);
 DEFINE_AVAILABLE_AUDIO_CONTEXTS_CHRC_VALUE(avail_audio_cntxt_val);
@@ -89,32 +91,32 @@ static void ble_pacs_connected(struct bt_conn *conn, u8_t err)
         return;
     }
 
-    int tx_octets = 0x00fb;
-    int tx_time = 0x0848;
-    int ret = -1;
+    // int tx_octets = 0x00fb;
+    // int tx_time = 0x0848;
+    // int ret = -1;
 
-    BT_INFO("%s",__func__);
-    ble_pacs_conn = conn;
+    // BT_INFO("%s",__func__);
+    // ble_pacs_conn = conn;
 
-    //set data length after connected.
-    ret = bt_le_set_data_len(ble_pacs_conn, tx_octets, tx_time);
-    if(!ret)
-    {
-        BT_WARN("ble tp set data length success.");
-    }
-    else
-    {
-        BT_WARN("ble tp set data length failure, err: %d\n", ret);
-    }
+    // //set data length after connected.
+    // ret = bt_le_set_data_len(ble_pacs_conn, tx_octets, tx_time);
+    // if(!ret)
+    // {
+    //     BT_WARN("ble tp set data length success.");
+    // }
+    // else
+    // {
+    //     BT_WARN("ble tp set data length failure, err: %d\n", ret);
+    // }
 
-    //exchange mtu size after connected.
-    exchg_mtu.func = ble_pacs_tx_mtu_size;
-    ret = bt_gatt_exchange_mtu(ble_pacs_conn, &exchg_mtu);
-    if (!ret) {
-        BT_WARN("ble tp exchange mtu size pending.");
-    } else {
-        BT_WARN("ble tp exchange mtu size failure, err: %d", ret);
-    }
+    // //exchange mtu size after connected.
+    // exchg_mtu.func = ble_pacs_tx_mtu_size;
+    // ret = bt_gatt_exchange_mtu(ble_pacs_conn, &exchg_mtu);
+    // if (!ret) {
+    //     BT_WARN("ble tp exchange mtu size pending.");
+    // } else {
+    //     BT_WARN("ble tp exchange mtu size failure, err: %d", ret);
+    // }
 }
 
 static void ble_pacs_disconnected(struct bt_conn *conn, u8_t reason)
@@ -295,13 +297,12 @@ static void ble_sink_audio_locations_notify_ccc_changed(const struct bt_gatt_att
 
 static void ble_available_audio_contexts_notify_ccc_changed(const struct bt_gatt_attr *attr, u16_t value)
 {
-    int err = -1;
-    char data[9] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09};
-
-    if(value == BT_GATT_CCC_INDICATE) { // If might not be needed
-        err = bt_gatt_notify(ble_pacs_conn, get_attr(BT_CHRC_SINK_AUDIO_LOCATIONS_NOTIFY_ATTR_VAL_INDEX), data, (tx_mtu_size - 3));
-        BT_WARN("ble tp send indatcate: %d", err);
+    if(value == BT_GATT_CCC_NOTIFY)
+    {
+        avail_audio_cntxt_is_subbed = true;
     }
+
+    printf("CCC VALUE TO %d\r\n", value);
 }
 
 #if (PACS_OPT_FUNCTIONS_IS_ENABLED)
@@ -369,7 +370,11 @@ static struct bt_gatt_attr attrs[]= {
     BT_GATT_CCC(ble_available_audio_contexts_notify_ccc_changed, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE),
 
 	BT_GATT_CHARACTERISTIC(BT_UUID_CHRC_SUPPORTED_AUDIO_CONTEXTS,
-							BT_GATT_CHRC_READ, // | BT_GATT_CHRC_NOTIFY /*Optional*/,
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
+							BT_GATT_CHRC_READ | BT_GATT_CHRC_NOTIFY /*Optional*/,
+#else
+                            BT_GATT_CHRC_READ,
+#endif
 							BT_GATT_PERM_READ_ENCRYPT,
 							ble_supported_audio_contexts_recv_rd,
 							NULL,
@@ -386,6 +391,33 @@ static struct bt_gatt_attr *get_attr(u8_t index)
 	return &attrs[index];
 }
 
+/**
+ * GETTER/SETTER
+*/
+
+int setAvailableAudioContexts(uint16_t _available_sink_contexts, uint16_t _available_source_contexts)
+{
+    int err;
+
+    struct net_buf_simple buffer;
+
+    memcpy(avail_audio_cntxt_val.available_sink_contexts, &_available_sink_contexts, sizeof(avail_audio_cntxt_val.available_sink_contexts));
+    memcpy(avail_audio_cntxt_val.available_source_contexts, &_available_source_contexts, sizeof(avail_audio_cntxt_val.available_source_contexts));
+
+    if(avail_audio_cntxt_is_subbed) {
+        net_buf_simple_init(&buffer, 8);
+
+        net_buf_simple_add_mem(&buffer, avail_audio_cntxt_val.available_sink_contexts, sizeof(avail_audio_cntxt_val.available_sink_contexts));
+        net_buf_simple_add_mem(&buffer, avail_audio_cntxt_val.available_source_contexts, sizeof(avail_audio_cntxt_val.available_source_contexts));
+
+        err = bt_gatt_notify(ble_pacs_conn, get_attr(BT_CHRC_SINK_AUDIO_LOCATIONS_NOTIFY_ATTR_VAL_INDEX), buffer.data, buffer.len);
+        BT_WARN("ble tp send indatcate: %d", err);
+
+        net_buf_simple_reset(&avail_audio_cntxt_read_buf);
+    }
+
+    return 0;
+}
 
 int pacs_init()
 {
@@ -407,6 +439,17 @@ int pacs_init()
 
     uint64_t audio_location = AUDIO_LOC_DEF_LEFT_SURROUND & AUDIO_LOC_DEF_RIGHT_SURROUND;
     memcpy(sink_audio_loc_val.sink_audio_locations, &audio_location, sizeof(sink_audio_loc_val.sink_audio_locations));
+
+    uint16_t available_sink_contexts = CONTEXT_TYPE_MEDIA;
+    uint16_t available_source_contexts = CONTEXT_TYPE_PROHIBITED;
+    memcpy(avail_audio_cntxt_val.available_sink_contexts, &available_sink_contexts, sizeof(avail_audio_cntxt_val.available_sink_contexts));
+    memcpy(avail_audio_cntxt_val.available_source_contexts, &available_source_contexts, sizeof(avail_audio_cntxt_val.available_source_contexts));
+
+    uint16_t supported_sink_contexts = CONTEXT_TYPE_MEDIA;
+    uint16_t supported_source_contexts = CONTEXT_TYPE_PROHIBITED;
+    memcpy(supp_audio_cntxt_val.supported_sink_contexts, &supported_sink_contexts, sizeof(supp_audio_cntxt_val.supported_sink_contexts));
+    memcpy(supp_audio_cntxt_val.supported_source_contexts, &supported_source_contexts, sizeof(supp_audio_cntxt_val.supported_source_contexts));
+
 
 
     if( !isRegister )

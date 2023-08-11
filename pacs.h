@@ -19,6 +19,7 @@
 //notity value handle offset 9
 #define BT_CHRC_SUPPORTED_AUDIO_CONTEXTS_NOTIFY_ATTR_VAL_INDEX	(4)
 
+int setAvailableAudioContexts(uint16_t _available_sink_contexts, uint16_t _available_source_contexts);
 int pacs_init();
 
 #endif 
