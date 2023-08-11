@@ -24,11 +24,11 @@
 
 static void ble_pacs_connected(struct bt_conn *conn, u8_t err);
 static void ble_pacs_disconnected(struct bt_conn *conn, u8_t reason);
+static struct bt_gatt_attr *getAttr(int _index);
 
 static struct bt_conn *ble_pacs_conn;
-static struct bt_gatt_exchange_params exchg_mtu;
 
-static int tx_mtu_size = 20;
+static int tx_mtu_size = 20; // to be deleted
 static u8_t isRegister = 0;
 
 static volatile bool avail_audio_cntxt_is_subbed = false;
@@ -194,7 +194,7 @@ static int ble_supported_audio_contexts_recv_rd(struct bt_conn *_conn,	const str
 *  Writes 
 *************************************************************************/
 
-#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED == true)
 static int ble_sink_audio_locations_recv_wr(struct bt_conn *conn, const struct bt_gatt_attr *attr,
                                         const void *buf, u16_t len, u16_t offset, u8_t flags)
 {
@@ -226,27 +226,27 @@ static int ble_sink_audio_locations_recv_wr(struct bt_conn *conn, const struct b
 *  Notifies
 *************************************************************************/
 
-#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED == true)
 static void ble_sink_pac_notify_ccc_changed(const struct bt_gatt_attr *attr, u16_t value)
 {
     int err = -1;
     char data[9] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09};
 
     if(value == BT_GATT_CCC_INDICATE) { // If might not be needed
-        err = bt_gatt_notify(ble_pacs_conn, get_attr(BT_CHRC_SINK_PACK_NOTIFY_ATTR_VAL_INDEX), data, (tx_mtu_size - 3));
+        err = bt_gatt_notify(ble_pacs_conn, getAttr(BT_CHRC_SINK_PACK_NOTIFY_ATTR_VAL_INDEX), data, (tx_mtu_size - 3));
         BT_WARN("ble tp send indatcate: %d", err);
     }
 }
 #endif
 
-#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED == true)
 static void ble_sink_audio_locations_notify_ccc_changed(const struct bt_gatt_attr *attr, u16_t value)
 {
     int err = -1;
     char data[9] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09};
 
     if(value == BT_GATT_CCC_INDICATE) { // If might not be needed
-        err = bt_gatt_notify(ble_pacs_conn, get_attr(BT_CHRC_SINK_AUDIO_LOCATIONS_NOTIFY_ATTR_VAL_INDEX), data, (tx_mtu_size - 3));
+        err = bt_gatt_notify(ble_pacs_conn, getAttr(BT_CHRC_SINK_AUDIO_LOCATIONS_NOTIFY_ATTR_VAL_INDEX), data, (tx_mtu_size - 3));
         BT_WARN("ble tp send indatcate: %d", err);
     }
 }
@@ -262,14 +262,14 @@ static void ble_available_audio_contexts_notify_ccc_changed(const struct bt_gatt
     BT_INFO("CCC VALUE TO %d\r\n", value);
 }
 
-#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED == true)
 static void ble_supported_audio_contexts_notify_ccc_changed(const struct bt_gatt_attr *attr, u16_t value)
 {
     int err = -1;
     char data[9] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09};
 
     if(value == BT_GATT_CCC_INDICATE) { // If might not be needed
-        err = bt_gatt_notify(ble_pacs_conn, get_attr(BT_CHRC_SUPPORTED_AUDIO_CONTEXTS_NOTIFY_ATTR_VAL_INDEX), data, (tx_mtu_size - 3));
+        err = bt_gatt_notify(ble_pacs_conn, getAttr(BT_CHRC_SUPPORTED_AUDIO_CONTEXTS_NOTIFY_ATTR_VAL_INDEX), data, (tx_mtu_size - 3));
         BT_WARN("ble tp send indatcate: %d", err);
     }
 }
@@ -283,7 +283,7 @@ static struct bt_gatt_attr attrs[]= {
 	BT_GATT_PRIMARY_SERVICE(BT_UUID_SVC_BLE_PACS),
 
     BT_GATT_CHARACTERISTIC(BT_UUID_CHRC_SINK_PAC,
-#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED == true)
 							BT_GATT_CHRC_READ | BT_GATT_CHRC_NOTIFY /*Optional*/,
 #else
                             BT_GATT_CHRC_READ,
@@ -292,29 +292,29 @@ static struct bt_gatt_attr attrs[]= {
 							ble_sink_pac_recv_rd,
 							NULL,
 							NULL),
-#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED == true)
     BT_GATT_CCC(ble_sink_pac_notify_ccc_changed, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE),
 #endif
 
 	BT_GATT_CHARACTERISTIC(BT_UUID_CHRC_SINK_AUDIO_LOCATIONS,
-#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED == true)
 							BT_GATT_CHRC_READ | BT_GATT_CHRC_NOTIFY /*Optional*/ | BT_GATT_CHRC_WRITE /*Optional*/,
 #else
                             BT_GATT_CHRC_READ,
 #endif
-#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED == true)
 							BT_GATT_PERM_READ_ENCRYPT | BT_GATT_PERM_WRITE_ENCRYPT,
 #else
                             BT_GATT_PERM_READ_ENCRYPT,
 #endif
 							ble_sink_audio_locations_recv_rd,
-#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED == true)
                             ble_sink_audio_locations_recv_wr,
 #else
                             NULL,
 #endif
 							NULL),
-#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED == true)
     BT_GATT_CCC(ble_sink_audio_locations_notify_ccc_changed, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE),
 #endif
 
@@ -327,7 +327,7 @@ static struct bt_gatt_attr attrs[]= {
     BT_GATT_CCC(ble_available_audio_contexts_notify_ccc_changed, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE),
 
 	BT_GATT_CHARACTERISTIC(BT_UUID_CHRC_SUPPORTED_AUDIO_CONTEXTS,
-#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED == true)
 							BT_GATT_CHRC_READ | BT_GATT_CHRC_NOTIFY /*Optional*/,
 #else
                             BT_GATT_CHRC_READ,
@@ -336,7 +336,7 @@ static struct bt_gatt_attr attrs[]= {
 							ble_supported_audio_contexts_recv_rd,
 							NULL,
 							NULL),
-#if (PACS_OPT_FUNCTIONS_IS_ENABLED)
+#if (PACS_OPT_FUNCTIONS_IS_ENABLED == true)
     BT_GATT_CCC(ble_supported_audio_contexts_notify_ccc_changed, BT_GATT_PERM_READ | BT_GATT_PERM_WRITE),
 #endif
 };
@@ -346,6 +346,11 @@ struct bt_gatt_service ble_pacs_server = BT_GATT_SERVICE(attrs);
 /**
  * GETTER/SETTER
 */
+
+static struct bt_gatt_attr *getAttr(int _index)
+{
+    return &attrs[_index];
+}
 
 int setAvailableAudioContexts(uint16_t _available_sink_contexts, uint16_t _available_source_contexts)
 {
@@ -362,7 +367,7 @@ int setAvailableAudioContexts(uint16_t _available_sink_contexts, uint16_t _avail
         net_buf_simple_add_mem(&buffer, avail_audio_cntxt_val.available_sink_contexts, sizeof(avail_audio_cntxt_val.available_sink_contexts));
         net_buf_simple_add_mem(&buffer, avail_audio_cntxt_val.available_source_contexts, sizeof(avail_audio_cntxt_val.available_source_contexts));
 
-        err = bt_gatt_notify(ble_pacs_conn, &attrs[BT_CHRC_SINK_AUDIO_LOCATIONS_NOTIFY_ATTR_VAL_INDEX], buffer.data, buffer.len); // TODO: only notifies every 2nd time for some reason (err -128)
+        err = bt_gatt_notify(ble_pacs_conn, getAttr(BT_CHRC_SINK_AUDIO_LOCATIONS_NOTIFY_ATTR_VAL_INDEX), buffer.data, buffer.len); // TODO: only notifies every 2nd time for some reason (err -128)
         BT_WARN("ble tp send indatcate: %d", err);
 
         net_buf_simple_reset(&avail_audio_cntxt_read_buf);

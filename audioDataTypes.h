@@ -259,9 +259,6 @@ typedef struct {
  * METADATA
 */
 
-#define METADATA_BUFFER_MAX_SIZE 256
-static uint8_t metadata_buffer[METADATA_BUFFER_MAX_SIZE];
-
 typedef enum {
     META_TYPE_PREFERRED_AUDIO_CONTEXTS = 0x01,
     META_TYPE_STREAMING_AUDIO_CONTEXTS = 0x02,
