@@ -68,22 +68,6 @@ static struct bt_conn_cb ble_pacs_conn_callbacks = {
 	.disconnected	=   ble_pacs_disconnected,
 };
 
-static struct bt_gatt_attr *get_attr(u8_t index);
-
-static void ble_pacs_tx_mtu_size(struct bt_conn *conn, u8_t err,
-			  struct bt_gatt_exchange_params *params)
-{
-   if(!err)
-   {
-        tx_mtu_size = bt_gatt_get_mtu(ble_pacs_conn);
-        BT_WARN("ble tp echange mtu size success, mtu size: %d", tx_mtu_size);
-   }
-   else
-   {
-        BT_WARN("ble tp echange mtu size failure, err: %d", err);
-   }
-}
-
 static void ble_pacs_connected(struct bt_conn *conn, u8_t err)
 {
     if(err || conn->type != BT_CONN_TYPE_LE)
@@ -91,32 +75,7 @@ static void ble_pacs_connected(struct bt_conn *conn, u8_t err)
         return;
     }
 
-    // int tx_octets = 0x00fb;
-    // int tx_time = 0x0848;
-    // int ret = -1;
-
-    // BT_INFO("%s",__func__);
-    // ble_pacs_conn = conn;
-
-    // //set data length after connected.
-    // ret = bt_le_set_data_len(ble_pacs_conn, tx_octets, tx_time);
-    // if(!ret)
-    // {
-    //     BT_WARN("ble tp set data length success.");
-    // }
-    // else
-    // {
-    //     BT_WARN("ble tp set data length failure, err: %d\n", ret);
-    // }
-
-    // //exchange mtu size after connected.
-    // exchg_mtu.func = ble_pacs_tx_mtu_size;
-    // ret = bt_gatt_exchange_mtu(ble_pacs_conn, &exchg_mtu);
-    // if (!ret) {
-    //     BT_WARN("ble tp exchange mtu size pending.");
-    // } else {
-    //     BT_WARN("ble tp exchange mtu size failure, err: %d", ret);
-    // }
+    ble_pacs_conn = conn;
 }
 
 static void ble_pacs_disconnected(struct bt_conn *conn, u8_t reason)
@@ -125,8 +84,6 @@ static void ble_pacs_disconnected(struct bt_conn *conn, u8_t reason)
     {
         return;
     }
-
-    BT_INFO("%s",__func__);
 
     ble_pacs_conn = NULL;
 }
@@ -302,7 +259,7 @@ static void ble_available_audio_contexts_notify_ccc_changed(const struct bt_gatt
         avail_audio_cntxt_is_subbed = true;
     }
 
-    printf("CCC VALUE TO %d\r\n", value);
+    BT_INFO("CCC VALUE TO %d\r\n", value);
 }
 
 #if (PACS_OPT_FUNCTIONS_IS_ENABLED)
@@ -386,11 +343,6 @@ static struct bt_gatt_attr attrs[]= {
 
 struct bt_gatt_service ble_pacs_server = BT_GATT_SERVICE(attrs);
 
-static struct bt_gatt_attr *get_attr(u8_t index)
-{
-	return &attrs[index];
-}
-
 /**
  * GETTER/SETTER
 */
@@ -399,18 +351,18 @@ int setAvailableAudioContexts(uint16_t _available_sink_contexts, uint16_t _avail
 {
     int err;
 
-    struct net_buf_simple buffer;
+    NET_BUF_SIMPLE_DEFINE(buffer, 8);
 
     memcpy(avail_audio_cntxt_val.available_sink_contexts, &_available_sink_contexts, sizeof(avail_audio_cntxt_val.available_sink_contexts));
     memcpy(avail_audio_cntxt_val.available_source_contexts, &_available_source_contexts, sizeof(avail_audio_cntxt_val.available_source_contexts));
 
     if(avail_audio_cntxt_is_subbed) {
-        net_buf_simple_init(&buffer, 8);
+        net_buf_simple_init(&buffer, 0);
 
         net_buf_simple_add_mem(&buffer, avail_audio_cntxt_val.available_sink_contexts, sizeof(avail_audio_cntxt_val.available_sink_contexts));
         net_buf_simple_add_mem(&buffer, avail_audio_cntxt_val.available_source_contexts, sizeof(avail_audio_cntxt_val.available_source_contexts));
 
-        err = bt_gatt_notify(ble_pacs_conn, get_attr(BT_CHRC_SINK_AUDIO_LOCATIONS_NOTIFY_ATTR_VAL_INDEX), buffer.data, buffer.len);
+        err = bt_gatt_notify(ble_pacs_conn, &attrs[BT_CHRC_SINK_AUDIO_LOCATIONS_NOTIFY_ATTR_VAL_INDEX], buffer.data, buffer.len); // TODO: only notifies every 2nd time for some reason (err -128)
         BT_WARN("ble tp send indatcate: %d", err);
 
         net_buf_simple_reset(&avail_audio_cntxt_read_buf);
@@ -421,7 +373,7 @@ int setAvailableAudioContexts(uint16_t _available_sink_contexts, uint16_t _avail
 
 int pacs_init()
 {
-    printf("%s\r\n", "US_PACS");
+    printf("%s\r\n", "PACS");
     
     sink_pac_val.number_of_pac_records = 3;
     memcpy(sink_pac_val.data[0].codec_id, lc3_codec_id, sizeof(sink_pac_val.data[0].codec_id));
@@ -437,7 +389,7 @@ int pacs_init()
     sink_pac_val.data[2].codec_specific_capabilities = &csc_three;
     sink_pac_val.data[2].metadata_length = 0;
 
-    uint64_t audio_location = AUDIO_LOC_DEF_LEFT_SURROUND & AUDIO_LOC_DEF_RIGHT_SURROUND;
+    uint64_t audio_location = (AUDIO_LOC_DEF_LEFT_SURROUND | AUDIO_LOC_DEF_RIGHT_SURROUND);
     memcpy(sink_audio_loc_val.sink_audio_locations, &audio_location, sizeof(sink_audio_loc_val.sink_audio_locations));
 
     uint16_t available_sink_contexts = CONTEXT_TYPE_MEDIA;
@@ -449,8 +401,6 @@ int pacs_init()
     uint16_t supported_source_contexts = CONTEXT_TYPE_PROHIBITED;
     memcpy(supp_audio_cntxt_val.supported_sink_contexts, &supported_sink_contexts, sizeof(supp_audio_cntxt_val.supported_sink_contexts));
     memcpy(supp_audio_cntxt_val.supported_source_contexts, &supported_source_contexts, sizeof(supp_audio_cntxt_val.supported_source_contexts));
-
-
 
     if( !isRegister )
     {
