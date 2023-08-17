@@ -7,8 +7,6 @@
  * BUFFER
 */
 
-#define ADD_U8_TO_BUF(_buf, _val)  \
-    net_buf_simple_add_u8(_buf, _val)
 #define ADD_ARR_TO_BUF(_buf, _arr) \
     net_buf_simple_add_mem(_buf, _arr, sizeof(_arr))
 #define ADD_AUDIO_STRUCT_TO_BUF(_buf, _struct)    \

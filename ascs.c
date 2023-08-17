@@ -114,170 +114,67 @@ static int ble_sink_ase_recv_rd(struct bt_conn *_conn,	const struct bt_gatt_attr
 
     if((current_state == ASCS_SM_STATE_IDLE) || (current_state == ASCS_SM_STATE_RELEASING))
     {
-        ADD_U8_TO_BUF(&buffer, sink_ase_val.ase_id);
-        ADD_U8_TO_BUF(&buffer, sink_ase_val.ase_state);
-
-        goto end;
+        net_buf_simple_add_u8(&buffer, sink_ase_val.ase_id);
+        net_buf_simple_add_u8(&buffer, sink_ase_val.ase_state);
     }
     else if(current_state == ASCS_SM_STATE_CODEC_CONFIGURED)
     {
-        ADD_U8_TO_BUF(&buffer, sink_ase_val.ase_id);
-        ADD_U8_TO_BUF(&buffer, sink_ase_val.ase_state);
+        net_buf_simple_add_u8(&buffer, sink_ase_val.ase_id);
+        net_buf_simple_add_u8(&buffer, sink_ase_val.ase_state);
 
         sink_ase_csc_codec_configured additional_data;
         memcpy(&additional_data, sink_ase_val.additional_ase_params, (sizeof(additional_data)));
 
-        ADD_U8_TO_BUF(&buffer, additional_data.framing);
-        ADD_U8_TO_BUF(&buffer, additional_data.preferred_phy);
-        ADD_U8_TO_BUF(&buffer, additional_data.preferred_retransmission_number);
+        net_buf_simple_add_u8(&buffer, additional_data.framing);
+        net_buf_simple_add_u8(&buffer, additional_data.preferred_phy);
+        net_buf_simple_add_u8(&buffer, additional_data.preferred_retransmission_number);
         ADD_ARR_TO_BUF(&buffer, additional_data.max_transport_lateny);
         ADD_ARR_TO_BUF(&buffer, additional_data.presentation_delay_min);
         ADD_ARR_TO_BUF(&buffer, additional_data.presentation_delay_max);
         ADD_ARR_TO_BUF(&buffer, additional_data.preferred_presentation_delay_min);
         ADD_ARR_TO_BUF(&buffer, additional_data.preferred_presentation_delay_max);
         ADD_ARR_TO_BUF(&buffer, additional_data.codec_id);
-        ADD_U8_TO_BUF(&buffer, additional_data.codec_specific_configuration_length);
+        net_buf_simple_add_u8(&buffer, additional_data.codec_specific_configuration_length);
 
-        if(additional_data.codec_specific_configuration_length == 0x00)
+        if(additional_data.codec_specific_configuration_length != 0x00)
         {
-            goto end;
+            extractCodecSpecificConfiguration(additional_data.codec_specific_configuration, &buffer);
         }
-
-        codec_specific_configuration_empty csc_type_finder;
-        memcpy(&csc_type_finder, additional_data.codec_specific_configuration, sizeof(csc_type_finder));
-
-        switch(csc_type_finder.type)
-        {
-            case CSC_TYPE_SAMPLING_FREQUENCY: ;
-                codec_specific_configuration_sampling_frequency csc_sf;
-                memcpy(&csc_sf, additional_data.codec_specific_configuration, sizeof(csc_sf));
-                ADD_AUDIO_STRUCT_TO_BUF(&buffer, csc_sf);
-                break;
-            case CSC_TYPE_FRAME_DURATION: ;
-                codec_specific_configuration_frame_duration csc_fd;
-                memcpy(&csc_fd, additional_data.codec_specific_configuration, sizeof(csc_fd));
-                ADD_AUDIO_STRUCT_TO_BUF(&buffer, csc_sf);
-                break;
-            case CSC_TYPE_AUDIO_CHANNEL_ALLOCATION: ;
-                codec_specific_configuration_audio_channel_allocation csc_aca;
-                memcpy(&csc_aca, additional_data.codec_specific_configuration, sizeof(csc_aca));
-                ADD_AUDIO_STRUCT_TO_BUF(&buffer, csc_sf);
-                break;
-            case CSC_TYPE_OCTETS_PER_CODEC_FRAME: ;
-                codec_specific_configuration_octets_per_codec_frame csc_opcf;
-                memcpy(&csc_opcf, additional_data.codec_specific_configuration, sizeof(csc_opcf));
-                ADD_AUDIO_STRUCT_TO_BUF(&buffer, csc_sf);
-                break;
-            case CSC_TYPE_CODEC_FRAME_BLOCKS_PER_SDU: ;
-                codec_specific_configuration_codec_frame_blocks_per_sdu csc_cfbps;
-                memcpy(&csc_cfbps, additional_data.codec_specific_configuration, sizeof(csc_cfbps));
-                ADD_AUDIO_STRUCT_TO_BUF(&buffer, csc_sf);
-                break;
-        }
-
-        goto end;
     }
     else if(current_state == ASCS_SM_STATE_QOS_CONFIGURED)
     {
-        ADD_U8_TO_BUF(&buffer, sink_ase_val.ase_id);
-        ADD_U8_TO_BUF(&buffer, sink_ase_val.ase_state);
+        net_buf_simple_add_u8(&buffer, sink_ase_val.ase_id);
+        net_buf_simple_add_u8(&buffer, sink_ase_val.ase_state);
 
         sink_ase_csc_qos_configured additional_data;
         memcpy(&additional_data, sink_ase_val.additional_ase_params, (sizeof(additional_data)));
 
-        ADD_U8_TO_BUF(&buffer, additional_data.cig_id);
-        ADD_U8_TO_BUF(&buffer, additional_data.cis_id);
+        net_buf_simple_add_u8(&buffer, additional_data.cig_id);
+        net_buf_simple_add_u8(&buffer, additional_data.cis_id);
         ADD_ARR_TO_BUF(&buffer, additional_data.sdu_interval);
-        ADD_U8_TO_BUF(&buffer, additional_data.framing);
-        ADD_U8_TO_BUF(&buffer, additional_data.phy);
+        net_buf_simple_add_u8(&buffer, additional_data.framing);
+        net_buf_simple_add_u8(&buffer, additional_data.phy);
         ADD_ARR_TO_BUF(&buffer, additional_data.max_sdu);
-        ADD_U8_TO_BUF(&buffer, additional_data.retransmission_number);
+        net_buf_simple_add_u8(&buffer, additional_data.retransmission_number);
         ADD_ARR_TO_BUF(&buffer, additional_data.max_transport_latency);
         ADD_ARR_TO_BUF(&buffer, additional_data.presentation_delay);
-
-        goto end;
     }
     else if((current_state == ASCS_SM_STATE_ENABLING) ||
             (current_state == ASCS_SM_STATE_STREAMING) ||
             (current_state == ASCS_SM_STATE_DISABLING))
     {
-        ADD_U8_TO_BUF(&buffer, sink_ase_val.ase_id);
-        ADD_U8_TO_BUF(&buffer, sink_ase_val.ase_state);
+        net_buf_simple_add_u8(&buffer, sink_ase_val.ase_id);
+        net_buf_simple_add_u8(&buffer, sink_ase_val.ase_state);
 
         sink_ase_csc_enabling_streaming_disabling additional_data;
         memcpy(&additional_data, sink_ase_val.additional_ase_params, (sizeof(additional_data)));
 
-        ADD_U8_TO_BUF(&buffer, additional_data.cig_id);
-        ADD_U8_TO_BUF(&buffer, additional_data.cis_id);
-        ADD_U8_TO_BUF(&buffer, additional_data.metadata_length);
-
-        metadata_empty metadata_type_finder;
-        memcpy(&metadata_type_finder, additional_data.metadata, sizeof(metadata_type_finder));
-
-        switch(metadata_type_finder.type)
-        {
-            case META_TYPE_PREFERRED_AUDIO_CONTEXTS: ;
-                metadata_preferred_audio_contexts meta_pac;
-                memcpy(&meta_pac, additional_data.metadata, sizeof(meta_pac));
-                ADD_AUDIO_STRUCT_TO_BUF(&buffer, meta_pac);
-                break;
-            case META_TYPE_STREAMING_AUDIO_CONTEXTS: ;
-                metadata_streaming_audio_contexts meta_sac;
-                memcpy(&meta_sac, additional_data.metadata, sizeof(meta_sac));
-                ADD_AUDIO_STRUCT_TO_BUF(&buffer, meta_sac);
-                break;
-            case META_TYPE_PROGRAM_INFO: ;
-                metadata_program_info meta_pi;
-                memcpy(&meta_pi, additional_data.metadata, sizeof(meta_pi));
-                ADD_AUDIO_STRUCT_TO_BUF(&buffer, meta_pi);
-                break;
-            case META_TYPE_LANGUAGE: ;
-                metadata_language meta_l;
-                memcpy(&meta_l, additional_data.metadata, sizeof(meta_l));
-                ADD_AUDIO_STRUCT_TO_BUF(&buffer, meta_l);
-                break;
-            case META_TYPE_CCID_LIST: ;
-                metadata_ccid_list meta_cl;
-                memcpy(&meta_cl, additional_data.metadata, sizeof(meta_cl));
-                ADD_AUDIO_STRUCT_TO_BUF(&buffer, meta_cl);
-                break;
-            case META_TYPE_PARENTAL_RATING: ;
-                metadata_parental_rating meta_pr;
-                memcpy(&meta_pr, additional_data.metadata, sizeof(meta_pr));
-                ADD_AUDIO_STRUCT_TO_BUF(&buffer, meta_pr);
-                break;
-            case META_TYPE_PROGRAM_INFO_URI: ;
-                metadata_program_info_uri meta_pii;
-                memcpy(&meta_pii, additional_data.metadata, sizeof(meta_pii));
-                ADD_AUDIO_STRUCT_TO_BUF(&buffer, meta_pii);
-                break;
-            case META_TYPE_EXTENDED_METADATA: ;
-                metadata_extended_metadata meta_em;
-                memcpy(&meta_em, additional_data.metadata, sizeof(meta_em));
-                ADD_AUDIO_STRUCT_TO_BUF(&buffer, meta_em);
-                break;
-            case META_TYPE_VENDOR_SPECIFIC: ;
-                metadata_vendor_specific meta_vs;
-                memcpy(&meta_vs, additional_data.metadata, sizeof(meta_vs));
-                ADD_AUDIO_STRUCT_TO_BUF(&buffer, meta_vs);
-                break;
-            case META_TYPE_AUDIO_ACTIVE_STATE: ;
-                metadata_audio_active_state meta_aas;
-                memcpy(&meta_aas, additional_data.metadata, sizeof(meta_aas));
-                ADD_AUDIO_STRUCT_TO_BUF(&buffer, meta_aas);
-                break;
-            case META_TYPE_BROADCAST_ADUIO_IMMEDIATE_RENDERING_FLAG: ;
-                metadata_broadcast_audio_immediate_rendering_flag meta_bairf;
-                memcpy(&meta_bairf, additional_data.metadata, sizeof(meta_bairf));
-                net_buf_simple_add_u8(&buffer, meta_bairf.length);
-                net_buf_simple_add_u8(&buffer, meta_bairf.type);
-                break;
-
-            goto end;
-        }
+        net_buf_simple_add_u8(&buffer, additional_data.cig_id);
+        net_buf_simple_add_u8(&buffer, additional_data.cis_id);
+        net_buf_simple_add_u8(&buffer, additional_data.metadata_length);
+        
+        extractMetadata(additional_data.metadata, &buffer);
     }
-
-    end:
 
     memcpy(_buf, buffer.data, buffer.len);
     net_buf_simple_reset(&buffer);
@@ -404,8 +301,8 @@ static void ble_ase_control_point_notify_val()
 
     net_buf_simple_init(&ase_cp_buf, 0);
 
-    ADD_U8_TO_BUF(&ase_cp_buf, ase_cp_val.opcode);
-    ADD_U8_TO_BUF(&ase_cp_buf, ase_cp_val.number_of_ases);
+    net_buf_simple_add_u8(&ase_cp_buf, ase_cp_val.opcode);
+    net_buf_simple_add_u8(&ase_cp_buf, ase_cp_val.number_of_ases);
 
     if((0xFF == ase_cp_val.number_of_ases) || (0 == ase_cp_val.number_of_ases))
     {

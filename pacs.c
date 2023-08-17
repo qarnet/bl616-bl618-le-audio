@@ -104,7 +104,7 @@ static int ble_sink_pac_recv_rd(struct bt_conn *_conn,	const struct bt_gatt_attr
 
     net_buf_simple_init(&sink_pac_read_buf, 0);
 
-    ADD_U8_TO_BUF(&sink_pac_read_buf, sink_pac_val.number_of_pac_records);
+    net_buf_simple_add_u8(&sink_pac_read_buf, sink_pac_val.number_of_pac_records);
 
     for(int i = 0; i < sink_pac_val.number_of_pac_records; i++)
     {
