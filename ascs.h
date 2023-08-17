@@ -8,14 +8,10 @@
 
 #include "port/include/config.h"
 
-//read value handle offset 2
-#define BT_CHRC_SINK_ASE_RD_ATTR_VAL_INDEX    	(2)
-//write value handle offset 4
-#define BT_CHRC_ASE_CONTROL_POINT_WR_ATTR_VAL_INDEX	(4)
 //indicate value handle offset 6
-#define BT_CHAR_SINK_ASE_NOTIFY_ATTR_VAL_INDEX	(6)
+#define BT_CHAR_SINK_ASE_NOTIFY_ATTR_VAL_INDEX	(1)
 //notity value handle offset 9
-#define BT_CHAR_ASE_CONTROL_POINT_NOTIFY_ATTR_VAL_INDEX	(9)
+#define BT_CHAR_ASE_CONTROL_POINT_NOTIFY_ATTR_VAL_INDEX	(4)
 
 void ascs_init();
 
