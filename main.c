@@ -81,11 +81,12 @@ static void ble_start_adv(void)
 {
     struct bt_le_adv_param param;
     int err = -1;
-    struct bt_data adv_data[1] = {
-        BT_DATA_BYTES(BT_DATA_FLAGS, BT_LE_AD_NO_BREDR | BT_LE_AD_GENERAL)
+    struct bt_data adv_data[] = {
+        BT_DATA_BYTES(BT_DATA_FLAGS, BT_LE_AD_NO_BREDR | BT_LE_AD_GENERAL),
+        BT_DATA_BYTES(BT_DATA_UUID16_ALL, (BT_UUID_SVC_BLE_ASCS_VAL >> 0) & 0xff, (BT_UUID_SVC_BLE_ASCS_VAL >> 8) & 0xff)
     };
-    struct bt_data adv_rsp[1] = {
-        BT_DATA_BYTES(BT_DATA_MANUFACTURER_DATA, "BL616")
+    struct bt_data adv_rsp[] = {
+        // BT_DATA_BYTES(BT_DATA_MANUFACTURER_DATA, "BL616")
     };
 
     memset(&param, 0, sizeof(param));
