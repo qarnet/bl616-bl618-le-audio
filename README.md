@@ -1,5 +1,5 @@
 # Disclaimer
-This project is far from finished.
+This project is far from finished. Edit: Also in need of more research, if this chip is able to support LE Audio. Something about the I2S clock needing to be synchronized with another clock.
 
 # Setup
 ## 1.
